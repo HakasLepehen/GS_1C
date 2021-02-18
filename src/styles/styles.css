@@ -26,7 +26,7 @@ section {
 .nav__wrapper {
   position: fixed;
   height: 100%;
-  padding: 30px;
+  padding: 24px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-end;
@@ -35,22 +35,12 @@ section {
   margin: 0 0 100px 30px;
 }
 .nav__counter {
-  font-size: 24px;
+  font-size: 18px;
   transition: all 0.15s ease-out;
-}
-.nav__title {
-  font-size: 32px;
-  font-weight: 300;
-  margin: 0 0 0.25em;
-  width: 300px;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: height 0.3s ease-out, opacity 0.2s ease-out;
 }
 .nav__body {
   font-weight: 100;
-  font-size: 18px;
+  font-size: 14px;
   width: 300px;
   height: 0;
   overflow: hidden;
@@ -61,6 +51,7 @@ section {
   position: relative;
   transition: all 0.3s ease-out;
   margin-bottom: 1em;
+  list-style-type: none;
 }
 .nav li:after {
   content: "";
@@ -91,7 +82,7 @@ section {
   padding-left: 1em;
 }
 .nav li.active:after {
-  width: 35px;
+  width: 30px;
   height: 400px;
   top: 35px;
 }
