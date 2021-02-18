@@ -1,4 +1,5 @@
 import './styles/styles.scss';
+import './http_maxcdn.bootstrapcdn.com_bootstrap_3.3.6_js_bootstrap';
 // function component() {
 //     const element = document.createElement('h1');
 //
