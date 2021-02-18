@@ -1,5 +1,6 @@
 import './styles/styles.scss';
 import './http_maxcdn.bootstrapcdn.com_bootstrap_3.3.6_js_bootstrap';
+import './fonts/Cyntho Next Slab.ttf'
 // function component() {
 //     const element = document.createElement('h1');
 //
@@ -16,7 +17,7 @@ $('a[href*=#]:not([href=#])').click(function() {
     if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'')
         || location.hostname === this.hostname) {
 
-        var target = $(this.hash);
+        let target = $(this.hash);
         target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
         if (target.length) {
             $('html,body').animate({

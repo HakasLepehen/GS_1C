@@ -1,27 +1,31 @@
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+}
 .wrapper {
   min-height: 100vh;
-  font-family: 'Roboto Slab', serif;
+  width: 100%;
+  font-family: 'CynthoNextSlab-Light', 'Montserrat', sans-serif;
   font-weight: 300;
-  color: #eee;
+
+  //-moz-box-shadow:0 0 5px white;
+  //-webkit-box-shadow:0 0 5px white;
+  //text-shadow:0 0 5px white;
+  color: white;
   position: relative;
 }
 
 section {
+  box-sizing: border-box;
   height: 100vh;
   font-size: 40px;
   font-weight: 100;
-  background-color: #22A7F0;
+  background-color: #232946;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  $colors: white, #F64747, #22A7F0, #F9690E, #9B59B6, #03C9A9, #ffcc00;
-  @for $i from 1 through length($colors) {
-    &:nth-child(#{$i}) {
-      background: nth($colors, $i)
-    }
-  }
 }
 
 .nav {
