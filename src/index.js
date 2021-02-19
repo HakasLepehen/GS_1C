@@ -1,13 +1,15 @@
 import './styles/styles.scss';
-import './fonts/Cyntho Next Slab.ttf'
+import './bootstrap.js';
+import './fonts/Montserrat-Regular.ttf';
+import axios from "axios";
 
 // SMOOTH SCROLLING SECTIONS
-$('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'')
+$('a[href*=#]:not([href=#])').click(function () {
+    if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '')
         || location.hostname === this.hostname) {
 
         let target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
         if (target.length) {
             $('html,body').animate({
                 scrollTop: target.offset().top
@@ -16,3 +18,17 @@ $('a[href*=#]:not([href=#])').click(function() {
         }
     }
 });
+
+//Получаем массив печенек
+// let arr = document.cookie.split(';')
+//     .reduce((acc, cur) => {
+//         let item = cur.trim();
+//         if (item !== '') {
+//             acc.push(item);
+//         }
+//         return acc;
+//     }, []);
+//
+// console.log(arr);
+
+// axios.get()
