@@ -42,9 +42,9 @@ const cssLoaders = (extra) => {
     return loaders;
 }
 
-const copyMap = {
-    'axios': (!isDev) ? 'axios/dist/axios.js' : 'axios/dist/axios.min.js',
-}
+// const copyMap = {
+//     'axios': (!isDev) ? 'axios/dist/axios.js' : 'axios/dist/axios.min.js'
+// }
 
 console.log('IsDev:', isDev);
 
@@ -76,10 +76,13 @@ module.exports = {
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(
             {filename: "[name].[contenthash].css"}
-        ),
-        new CopyWebpackPlugin([
-            {from: copyMap['axios'], to: 'src/axios.js'}
-        ])
+        )
+        // new CopyWebpackPlugin(
+        //     {from: copyMap.axios, to: '/dist/src/axios.js'},
+        //     {
+        //         context: path.join(__dirname, './node_modules')
+        //     }
+        // )
     ],
     externals: {
         "axios": {
