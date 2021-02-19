@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("./../fonts/Montserrat-regular.ttf");
+}
 
 body {
   box-sizing: border-box;
@@ -6,8 +10,8 @@ body {
 .wrapper {
   min-height: 100vh;
   width: 100%;
-  font-family: 'CynthoNextSlab-Light', 'Montserrat', sans-serif;
-  font-weight: 300;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
 
   //-moz-box-shadow:0 0 5px white;
   //-webkit-box-shadow:0 0 5px white;
@@ -25,7 +29,9 @@ section {
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+}
+.section1 {
 }
 
 .nav {
@@ -43,12 +49,13 @@ section {
     margin: 0 0 100px 30px;
   }
   &__counter {
-    font-size: 18px;
+    font-size: 20px;
     transition: all 0.15s ease-out;
   }
   &__body {
     font-weight: 100;
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 14px;
     width: 300px;
     height: 0;
     overflow: hidden;
@@ -78,11 +85,12 @@ section {
       display: block;
       padding: 0;
       color: #fff;
+      text-decoration: none;
       transition: all 0.15s ease-out;
 
       &:hover {
         background-color: transparent;
-        padding-left: 1em
+        padding-left: 0.5em
       }
       &:focus {
         background-color: transparent;
@@ -96,16 +104,11 @@ section {
       &:after {
         width: 30px;
         height: 400px;
-        top: 35px;
+        top: 10px;
       }
 
       .nav__counter {
-        font-size: 48px;
-      }
-      .nav__title {
-        height: 40px;
-        opacity: 1;
-        overflow: visible;
+        font-size: 20px;
       }
       .nav__body {
         height: 100px;
