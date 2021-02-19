@@ -1,10 +1,10 @@
 const path = require("path");
-const webpack = require('webpack');
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 console.log(process.env.NODE_ENV);
 console.log(__dirname);
@@ -42,6 +42,10 @@ const cssLoaders = (extra) => {
     return loaders;
 }
 
+const copyMap = {
+    'axios': (!isDev) ? 'axios/dist/axios.js' : 'axios/dist/axios.min.js',
+}
+
 console.log('IsDev:', isDev);
 
 module.exports = {
@@ -73,11 +77,15 @@ module.exports = {
         new MiniCssExtractPlugin(
             {filename: "[name].[contenthash].css"}
         ),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
-        })
+        new CopyWebpackPlugin([
+            {from: copyMap['axios'], to: 'src/axios.js'}
+        ])
     ],
+    externals: {
+        "axios": {
+            "amd": "axios"
+        }
+    },
 
     module: {
         rules: [
@@ -92,7 +100,7 @@ module.exports = {
                 test: /\.(ico|gif|png|jpg|jpeg|svg)$/,
                 loader: 'file-loader',
                 options: {
-                    name: 'src/img/[name].[ext]',
+                    name: 'src/media/[name].[ext]',
                     publicPath: ''
                 }
             },
