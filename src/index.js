@@ -1,5 +1,5 @@
 import './styles/styles.scss';
-import './http_maxcdn.bootstrapcdn.com_bootstrap_3.3.6_js_bootstrap';
+import './bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
 import axios from "axios";
 
@@ -31,4 +31,4 @@ $('a[href*=#]:not([href=#])').click(function () {
 //
 // console.log(arr);
 
-axios.get()
+// axios.get()
