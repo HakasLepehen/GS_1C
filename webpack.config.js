@@ -74,9 +74,9 @@ module.exports = {
             {filename: "[name].[contenthash].css"}
         ),
         new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery'
-        })
+            $: "jquery",
+            jQuery: "jquery"
+        }),
     ],
 
     module: {

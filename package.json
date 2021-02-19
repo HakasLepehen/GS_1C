@@ -4,7 +4,7 @@
   "description": "project who must help to calculate subscription fee",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "dev": "cross-env NODE_ENV=development webpack --mode development --watch",
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "watch": " webpack serve --mode development --watch",
     "start": "cross-env NODE_ENV=development webpack serve --mode development"
@@ -38,7 +38,6 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "file-loader": "^6.2.0",
-    "jquery": "^3.5.1"
+    "file-loader": "^6.2.0"
   }
 }
