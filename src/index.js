@@ -2,6 +2,7 @@ import './styles/styles.scss';
 import './bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
 import axios from "axios";
+import './GSconfig';
 
 // SMOOTH SCROLLING SECTIONS
 $('a[href*=#]:not([href=#])').click(function () {
@@ -31,4 +32,48 @@ $('a[href*=#]:not([href=#])').click(function () {
 //
 // console.log(arr);
 
-// axios.get()
+async function signInInGS(login, password) {
+    try {
+        const resolve = await axios.get(window.configuration.url + 'auth/login', {
+            params: {
+                username: login,
+                password: password
+            }
+        });
+        if (resolve.data.Error) {
+            alert('вы неправильно ввели логин или пароль');
+        } else {
+            if (resolve.status === 200) {
+                return resolve.data;
+            }
+        }
+    } catch (e) {
+        return alert('Что то пошло не так. Обнови страницу, либо пиши разработчику!')
+    }
+}
+
+async function init () {
+    const user = await signInInGS('supportsonar', '73812639019');
+    console.log(`полученный пользователь: ${JSON.stringify(user)}`);
+}
+
+init();
+
+
+
+// axios.get(window.configuration.url + 'auth/login', {
+//     params: {
+//         username: 'supportsonar',
+//         password: '73812639019'
+//     }
+// })
+//     .then(res => {
+//             if (res.data.AuthId) {
+//                 document.cookie = `X-Auth = ${res.data.AuthId}`
+//             } else {
+//                 console.error(res.data.Error)
+//             }
+//         }
+//     )
+//     .catch(err => console.log(err))
+
