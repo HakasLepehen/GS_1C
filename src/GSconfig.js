@@ -1,5 +1,3 @@
-window.configuration = {
+window.configuration = {}
 
-}
-
-window.configuration.url = '';
+window.configuration.url = 'https://hosting.glonasssoft.ru/api/';

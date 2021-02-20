@@ -4,7 +4,8 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
+const axios = require('axios');
 
 console.log(process.env.NODE_ENV);
 console.log(__dirname);
@@ -76,18 +77,22 @@ module.exports = {
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(
             {filename: "[name].[contenthash].css"}
-        )
+        ),
         // new CopyWebpackPlugin(
-        //     {from: copyMap.axios, to: '/dist/src/axios.js'},
+        //     {from: axios, to: '/dist/src/axios.js'},
         //     {
-        //         context: path.join(__dirname, './node_modules')
+        //         context: path.join(__dirname, './node_modules/')
         //     }
         // )
+        new webpack.ProvidePlugin({
+            $: path.resolve(path.join(__dirname, 'src/jquery_2.1.3.js')),
+            jQuery: path.resolve(path.join(__dirname, 'src/jquery_2.1.3.js')),
+        })
     ],
+    externalsType: 'script',
     externals: {
-        "axios": {
-            "amd": "axios"
-        }
+        'jquery': 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js',
+        // 'axios': axios
     },
 
     module: {
