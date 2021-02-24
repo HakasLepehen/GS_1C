@@ -7,17 +7,35 @@ body {
   box-sizing: border-box;
   margin: 0;
 }
+
 .wrapper {
   min-height: 100vh;
   width: 100%;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
+  z-index: 0;
 
   //-moz-box-shadow:0 0 5px white;
   //-webkit-box-shadow:0 0 5px white;
   //text-shadow:0 0 5px white;
   color: white;
   position: relative;
+
+  .section1, .section2, .section3 {
+
+    .container {
+      font-size: 18px;
+      max-width: 60vw;
+      background-color: lightgrey;
+
+      h1 {
+        //display: block;
+        text-align: center;
+        font-size: 52px;
+        margin: auto;
+      }
+    }
+  }
 }
 
 section {
@@ -28,10 +46,9 @@ section {
   background-color: #232946;
 
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-.section1 {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .nav {
@@ -48,10 +65,12 @@ section {
   & {
     margin: 0 0 100px 30px;
   }
+
   &__counter {
     font-size: 20px;
     transition: all 0.15s ease-out;
   }
+
   &__body {
     font-weight: 100;
     font-size: 12px;
@@ -92,6 +111,7 @@ section {
         background-color: transparent;
         padding-left: 0.5em
       }
+
       &:focus {
         background-color: transparent;
       }
@@ -110,6 +130,7 @@ section {
       .nav__counter {
         font-size: 20px;
       }
+
       .nav__body {
         height: 100px;
         opacity: 1;

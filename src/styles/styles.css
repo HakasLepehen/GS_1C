@@ -12,8 +12,19 @@ body {
   width: 100%;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
+  z-index: 0;
   color: white;
   position: relative;
+}
+.wrapper .section1 .container, .wrapper .section2 .container, .wrapper .section3 .container {
+  font-size: 18px;
+  max-width: 60vw;
+  background-color: lightgrey;
+}
+.wrapper .section1 .container h1, .wrapper .section2 .container h1, .wrapper .section3 .container h1 {
+  text-align: center;
+  font-size: 52px;
+  margin: auto;
 }
 
 section {
@@ -23,8 +34,9 @@ section {
   font-weight: 100;
   background-color: #232946;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .nav__wrapper {

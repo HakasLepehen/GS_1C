@@ -3,6 +3,7 @@ import './bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
 import axios from "axios";
 import './GSconfig';
+// import 'bootstrap';
 
 // SMOOTH SCROLLING SECTIONS
 $('a[href*=#]:not([href=#])').click(function () {
@@ -41,7 +42,7 @@ async function signInInGS(login, password) {
             }
         });
         if (resolve.data.Error) {
-            alert('вы неправильно ввели логин или пароль');
+            alert('Вы неправильно ввели логин или пароль');
         } else {
             if (resolve.status === 200) {
                 return resolve.data;
@@ -52,12 +53,12 @@ async function signInInGS(login, password) {
     }
 }
 
-async function init () {
-    const user = await signInInGS('supportsonar', '73812639019');
-    console.log(`полученный пользователь: ${JSON.stringify(user)}`);
-}
-
-init();
+// async function init () {
+//     const user = await signInInGS('supportsonar', '73812639019');
+//     console.log(`полученный пользователь: ${JSON.stringify(user)}`);
+// }
+//
+// init();
 
 
 
