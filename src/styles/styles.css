@@ -2,6 +2,14 @@
   font-family: "Montserrat";
   src: url("./../fonts/Montserrat-regular.ttf");
 }
+@keyframes fall {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 body {
   box-sizing: border-box;
   margin: 0;
@@ -13,18 +21,49 @@ body {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   z-index: 0;
+  -moz-box-shadow: 0 0 5px white;
+  -webkit-box-shadow: 0 0 5px white;
+  text-shadow: 0 0 5px white;
   color: white;
   position: relative;
 }
 .wrapper .section1 .container, .wrapper .section2 .container, .wrapper .section3 .container {
   font-size: 18px;
-  max-width: 60vw;
-  background-color: lightgrey;
+  height: 100%;
+  width: 60vw;
+  border: 1px solid black;
 }
 .wrapper .section1 .container h1, .wrapper .section2 .container h1, .wrapper .section3 .container h1 {
   text-align: center;
   font-size: 52px;
   margin: auto;
+}
+.wrapper .section2 .container span {
+  margin: 0 auto;
+  display: block;
+  cursor: pointer;
+}
+.wrapper .section2 .container .modal {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  height: 50vh;
+  width: 30%;
+  left: 35%;
+  top: 25vh;
+  margin: 0;
+  padding: 20px;
+  background: whitesmoke;
+  border: 1px solid #333;
+  border-radius: 20px;
+  z-index: 9999;
+  transition: margin-top 1s ease-in;
+  animation: fall 0.5s 1;
+}
+.wrapper .section2 .container .modal .form-title {
+  color: #232946;
 }
 
 section {
@@ -111,6 +150,15 @@ section {
   height: 100px;
   opacity: 1;
   overflow: visible;
+}
+
+.overflow {
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */
