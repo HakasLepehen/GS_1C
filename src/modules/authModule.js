@@ -27,7 +27,7 @@ export function openWin() {
 
     overflow.className = "overflow";
     section2.appendChild(overflow);
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
     modal.style.top = '25vh';
     modal.style.animation = 'fall 0.5s 1'
     // var height = modal.offsetHeight;

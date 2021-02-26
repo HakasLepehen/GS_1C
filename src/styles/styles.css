@@ -44,18 +44,19 @@ body {
   cursor: pointer;
 }
 .wrapper .section2 .container .modal {
+  color: #232946;
   display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: fixed;
-  height: 50vh;
+  height: 30vh;
   width: 30%;
   left: 35%;
-  top: 25vh;
+  top: 35vh;
   margin: 0;
   padding: 20px;
-  background: whitesmoke;
+  background: #b8c1ec;
   border: 1px solid #333;
   border-radius: 20px;
   z-index: 9999;
@@ -64,6 +65,42 @@ body {
 }
 .wrapper .section2 .container .modal .form-title {
   color: #232946;
+  width: 100%;
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.wrapper .section2 .container .modal .form-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 400px;
+  width: 500px;
+}
+.wrapper .section2 .container .modal .form-body-login, .wrapper .section2 .container .modal .form-body-password, .wrapper .section2 .container .modal .form-body .btn-submit {
+  background-color: #fffffe;
+  box-sizing: border-box;
+  display: block;
+  height: 40px;
+  margin-bottom: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+}
+.wrapper .section2 .container .modal .form-body .btn-submit {
+  font-size: 20px;
+  margin-top: 30px;
+  transition: 0.8s;
+}
+.wrapper .section2 .container .modal .form-body .btn-submit:hover {
+  background-color: #e9a4b1;
+  border: 1px solid #E79DAB;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.wrapper .section2 .container .modal .form-body .btn-submit:focus {
+  outline: none;
 }
 
 section {
