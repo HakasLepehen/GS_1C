@@ -2,7 +2,6 @@ import './styles/styles.scss';
 import './modules/bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
 import './modules/authModule.js'
-// import axios from "axios";
 import './modules/GSconfig';
 import {signInInGS, openWin} from "./modules/authModule";
 
@@ -37,9 +36,9 @@ $('a[href*=#]:not([href=#])').click(function () {
 
 
 async function init () {
-    const user = await signInInGS('supportsonar', '73812639019');
-    console.log(`полученный пользователь: ${JSON.stringify(user)}`);
-    openWin();
+    // const user = await signInInGS('supportsonar', '73812639019');
+    // console.log(`полученный пользователь: ${JSON.stringify(user)}`);
+    // openWin();
 }
 
     init();

@@ -12,6 +12,19 @@
   }
 }
 
+@keyframes up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -24,9 +37,9 @@ body {
   font-weight: 400;
   z-index: 0;
 
-  -moz-box-shadow:0 0 5px white;
-  -webkit-box-shadow:0 0 5px white;
-  text-shadow:0 0 5px white;
+  -moz-box-shadow: 0 0 5px white;
+  -webkit-box-shadow: 0 0 5px white;
+  text-shadow: 0 0 5px white;
   color: white;
   position: relative;
 
@@ -38,7 +51,7 @@ body {
       height: 100%;
       width: 60vw;
       //background-color: lightgrey;
-      border: 1px solid black;
+      //border: 1px solid black;
 
       h1 {
         //display: block;
@@ -64,13 +77,12 @@ body {
         display: none;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        position: fixed;
+        justify-content: space-between;
+        position: relative;
         height: 30vh;
-        width: 30%;
-        left: 50% - 15%;
+        width: 40%;
         top: 35vh;
-        margin: 0;
+        margin: 0 auto;
         padding: 20px;
         background: #b8c1ec;
         border: 1px solid #333;
@@ -82,33 +94,45 @@ body {
         .form-title {
           color: #232946;
           width: 100%;
-          font-size: 35px;
+          font-size: 2rem;
           font-weight: 700;
-          margin-bottom: 40px;
           text-align: center;
         }
 
-        .form-body {
+        .form-wrapper {
+          height: 70%;
           display: flex;
           flex-direction: column;
-          justify-content: space-around;
-          height: 400px;
-          width: 500px;
 
-          &-login, &-password, .btn-submit {
+          .form-body {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            height: 40%;
+            min-width: 30vw;
+
+            &-login, &-password {
+              background-color: #fffffe;
+              box-sizing: border-box;
+              display: block;
+              height: 60px;
+              margin: auto auto 10px auto;
+              width: 60%;
+              border: none;
+              border-radius: 5px;
+            }
+          }
+
+          .btn-submit {
             background-color: #fffffe;
             box-sizing: border-box;
             display: block;
             height: 40px;
-            margin-bottom: 10px;
-            width: 100%;
+            margin: auto auto 10px auto;
+            width: 60%;
             border: none;
             border-radius: 5px;
-          }
-
-          .btn-submit {
             font-size: 20px;
-            margin-top: 30px;
             transition: 0.8s;
 
             &:hover {
@@ -125,10 +149,18 @@ body {
         }
       }
 
-
+      .overflow {
+        width: 100%;
+        height: inherit;
+        z-index: 9998;
+        background: rgba(0, 0, 0, 0.7);
+        position: relative;
+        top: -36vh;
+      }
     }
   }
 }
+
 
 section {
   box-sizing: border-box;
@@ -234,11 +266,3 @@ section {
 
 }
 
-.overflow {
-  width: 100%;
-  height: 100%;
-  z-index: 9998;
-  background: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 0;
-}

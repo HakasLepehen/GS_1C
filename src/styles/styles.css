@@ -10,6 +10,18 @@
     transform: translateY(0);
   }
 }
+@keyframes up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -31,7 +43,6 @@ body {
   font-size: 18px;
   height: 100%;
   width: 60vw;
-  border: 1px solid black;
 }
 .wrapper .section1 .container h1, .wrapper .section2 .container h1, .wrapper .section3 .container h1 {
   text-align: center;
@@ -48,13 +59,12 @@ body {
   display: none;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  position: fixed;
+  justify-content: space-between;
+  position: relative;
   height: 30vh;
-  width: 30%;
-  left: 35%;
+  width: 40%;
   top: 35vh;
-  margin: 0;
+  margin: 0 auto;
   padding: 20px;
   background: #b8c1ec;
   border: 1px solid #333;
@@ -66,41 +76,60 @@ body {
 .wrapper .section2 .container .modal .form-title {
   color: #232946;
   width: 100%;
-  font-size: 35px;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 40px;
   text-align: center;
 }
-.wrapper .section2 .container .modal .form-body {
+.wrapper .section2 .container .modal .form-wrapper {
+  height: 70%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 400px;
-  width: 500px;
 }
-.wrapper .section2 .container .modal .form-body-login, .wrapper .section2 .container .modal .form-body-password, .wrapper .section2 .container .modal .form-body .btn-submit {
+.wrapper .section2 .container .modal .form-wrapper .form-body {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  height: 40%;
+  min-width: 30vw;
+}
+.wrapper .section2 .container .modal .form-wrapper .form-body-login, .wrapper .section2 .container .modal .form-wrapper .form-body-password {
+  background-color: #fffffe;
+  box-sizing: border-box;
+  display: block;
+  height: 60px;
+  margin: auto auto 10px auto;
+  width: 60%;
+  border: none;
+  border-radius: 5px;
+}
+.wrapper .section2 .container .modal .form-wrapper .btn-submit {
   background-color: #fffffe;
   box-sizing: border-box;
   display: block;
   height: 40px;
-  margin-bottom: 10px;
-  width: 100%;
+  margin: auto auto 10px auto;
+  width: 60%;
   border: none;
   border-radius: 5px;
-}
-.wrapper .section2 .container .modal .form-body .btn-submit {
   font-size: 20px;
-  margin-top: 30px;
   transition: 0.8s;
 }
-.wrapper .section2 .container .modal .form-body .btn-submit:hover {
+.wrapper .section2 .container .modal .form-wrapper .btn-submit:hover {
   background-color: #e9a4b1;
   border: 1px solid #E79DAB;
   cursor: pointer;
   transition: 0.1s;
 }
-.wrapper .section2 .container .modal .form-body .btn-submit:focus {
+.wrapper .section2 .container .modal .form-wrapper .btn-submit:focus {
   outline: none;
+}
+.wrapper .section2 .container .overflow {
+  width: 100%;
+  height: inherit;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.7);
+  position: relative;
+  top: -36vh;
 }
 
 section {
@@ -187,15 +216,6 @@ section {
   height: 100px;
   opacity: 1;
   overflow: visible;
-}
-
-.overflow {
-  width: 100%;
-  height: 100%;
-  z-index: 9998;
-  background: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  top: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */
