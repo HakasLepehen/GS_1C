@@ -33,12 +33,41 @@ $('a[href*=#]:not([href=#])').click(function () {
 //
 // console.log(arr);
 
+document.cookie = [
+    "_ym_uid=1613548060656796267"
+];
 
+let arr = [
+    "_ym_uid=1613548060656796267",
+    "_ym_d=1613548060",
+    "_ym_isad=2",
+    "_ym_visorc=w",
+    "AuthId=4fe968c4-9fa4-4bea-a341-70610a1aef01",
+    "PasswordLength=11"
+];
 
 async function init () {
     // const user = await signInInGS('supportsonar', '73812639019');
     // console.log(`полученный пользователь: ${JSON.stringify(user)}`);
     // openWin();
+    let obj = {
+
+    }
+
+    function Cook(key, val) {
+        this.key = key;
+        this.val = val;
+    }
+
+    arr.forEach((el, index) => {
+        el = el.split('=');
+        let rel = new Cook(el[0], el[1]);
+        arr.push(el[index]);
+        console.log(rel)
+    })
+    console.log("Получаем массив", arr);
+
+    // console.log('Получен массив: ', );
 }
 
     init();

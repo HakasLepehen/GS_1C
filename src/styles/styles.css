@@ -71,7 +71,6 @@ body {
   border-radius: 20px;
   z-index: 9999;
   transition: margin-top 1s ease-in;
-  animation: fall 0.5s 1;
 }
 .wrapper .section2 .container .modal .form-title {
   color: #232946;
@@ -117,6 +116,12 @@ body {
 .wrapper .section2 .container .modal .form-wrapper .btn-submit:hover {
   background-color: #e9a4b1;
   border: 1px solid #E79DAB;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.wrapper .section2 .container .modal .form-wrapper .btn-submit:focus {
+  background-color: greenyellow;
+  border: 1px solid greenyellow;
   cursor: pointer;
   transition: 0.1s;
 }

@@ -89,7 +89,7 @@ body {
         border-radius: 20px;
         z-index: 9999;
         transition: margin-top 1s ease-in;
-        animation: fall 0.5s 1;
+        //animation: fall 0.5s 1;
 
         .form-title {
           color: #232946;
@@ -138,6 +138,13 @@ body {
             &:hover {
               background-color: #e9a4b1;
               border: 1px solid #E79DAB;
+              cursor: pointer;
+              transition: 0.1s;
+            }
+
+            &:focus {
+              background-color: greenyellow;
+              border: 1px solid greenyellow;
               cursor: pointer;
               transition: 0.1s;
             }
