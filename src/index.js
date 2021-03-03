@@ -1,8 +1,9 @@
 import './styles/styles.scss';
 import './modules/bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
-import './modules/authModule.js'
+import './modules/Session.js'
 import './modules/GSconfig';
+import {signInInGS, Session, deleteCookies, checkTokenFromCookie} from "./modules/Session";
 
 // SMOOTH SCROLLING SECTIONS
 $('a[href*=#]:not([href=#])').click(function () {
@@ -20,6 +21,8 @@ $('a[href*=#]:not([href=#])').click(function () {
     }
 });
 
+// deleteCookies();
+
 //Получаем массив печенек
 // let arr = document.cookie.split(';')
 //     .reduce((acc, cur) => {
@@ -32,9 +35,7 @@ $('a[href*=#]:not([href=#])').click(function () {
 //
 // console.log(arr);
 
-document.cookie = [
-    "_ym_uid=1613548060656796267"
-];
+document.cookie = "_ym_uid=1613548060656796267";
 
 let arr = [
     "_ym_uid=1613548060656796267",
@@ -45,39 +46,46 @@ let arr = [
     "PasswordLength=11"
 ];
 
-async function init () {
-    $(function () {
-        let section2 = $('#section2');
+async function init() {
+    // const session = await signInInGS('supportsonar', '73812639019');
+    // console.log(`полученная сессия: ${JSON.stringify(session)}`);
+    // if (session.getToken()) {
+    //     alert('Вы авторизованы!');
+    // } else {
+    //     alert('Вы не авторизованы');
+    // }
 
-        $(window).scroll(() => {
-            let focusBelowTop = ($(window).scrollTop() >= section2.position().top);
-            let focusHigherBottom = $(window).scrollTop() <= (section2.position().top + section2.height());
-            if (focusBelowTop && focusHigherBottom) {
+    let token = checkTokenFromCookie();
+    if (!token) {
 
-            }
-        })
-    })
-    // const user = await signInInGS('supportsonar', '73812639019');
-    // console.log(`полученный пользователь: ${JSON.stringify(user)}`);
-    // openWin();
-
-    function Cook(key, val) {
-        this.key = key;
-        this.val = val;
     }
-
-    arr.forEach((el, index) => {
-        el = el.split('=');
-        console.log(el instanceof Array);
-        el = Object.fromEntries(el);
-    })
-    console.log("Получаем массив", arr);
-
-
-    // console.log('Получен массив: ', );
 }
 
-    init();
+
+$(function () {
+    let section2 = $('#section2');
+
+    $(window).scroll(() => {
+        let focusBelowTop = ($(window).scrollTop() >= section2.position().top);
+        let focusHigherBottom = $(window).scrollTop() <= (section2.position().top + section2.height());
+        if (focusBelowTop && focusHigherBottom) {
+            init();
+        }
+    })
+})
+// const user = await signInInGS('supportsonar', '73812639019');
+// console.log(`полученный пользователь: ${JSON.stringify(user)}`);
+// openWin();
+
+// arr.forEach((el, index) => {
+//     el = el.split('=');
+//     console.log(el instanceof Array);
+//     el = Object.fromEntries(el);
+// })
+// console.log("Получаем массив", arr);
+
+
+// console.log('Получен массив: ', );
 
 
 

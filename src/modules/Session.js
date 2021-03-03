@@ -1,5 +1,19 @@
 import axios from "axios";
 
+export class Session {
+    constructor(token, login) {
+        this.token = token;
+        this.login = login;
+    }
+
+    getToken() {
+        return this.token;
+    }
+    getLogin() {
+        return this.login;
+    }
+}
+
 //Метод авторизации в системе мониторинга
 export async function signInInGS(login, password) {
     try {
@@ -13,12 +27,36 @@ export async function signInInGS(login, password) {
             alert('Вы неправильно ввели логин или пароль');
         } else {
             if (resolve.status === 200) {
-                return resolve.data;
+                return new Session(resolve.data.AuthId, resolve.data.User);
             }
         }
     } catch (e) {
         return alert('Что то пошло не так. Обнови страницу, либо пиши разработчику!')
     }
+}
+
+export function deleteCookies() {
+    let cookies = document.cookie.split(';');
+
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        let eqPos = cookie.indexOf("=");
+        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
+export function checkTokenFromCookie() {
+    let token;
+    let cookies = document.cookie.split(';');
+
+    for (let i = 0; i < cookies.length; i++) {
+        if (cookies[i].includes('X-Auth=')) {
+            let pos = cookies[i].indexOf('=');
+            token = cookies[i].substring(pos, cookies[i].length).trim();
+        }
+    }
+    return token;
 }
 
 export function openWin() {
