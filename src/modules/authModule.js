@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//Метод авторизации в системе мониторинга
 export async function signInInGS(login, password) {
     try {
         const resolve = await axios.get(window.configuration.url + 'auth/login', {
@@ -22,20 +23,23 @@ export async function signInInGS(login, password) {
 
 export function openWin() {
     let modal = document.querySelector('.modal');
-    let section2 = document.querySelector('.section2');
+    let sectionContainer = document.querySelector('.section2 .container');
     let overflow = document.createElement('div');
 
     overflow.className = "overflow";
-    section2.appendChild(overflow);
+    sectionContainer.appendChild(overflow);
     modal.style.display = 'flex';
     modal.style.top = '25vh';
     modal.style.animation = 'fall 0.5s 1'
-    // var height = modal.offsetHeight;
-    // modal.style.marginTop = height / 2 + 'px';
+
     // overflow.onclick = () => {
-    //     modal.style.top = "-100%";
-    //     modal.style.display = 'none';
-    //     overflow.remove();
+    //
+    //     modal.style.animation = 'up 1s 1';
+    //     setTimeout(() => {
+    //         modal.style.top = "-100%";
+    //         modal.style.display = 'none';
+    //         overflow.remove();
+    //     }, 900);
     // }
 }
 

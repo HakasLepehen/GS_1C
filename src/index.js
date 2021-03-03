@@ -2,9 +2,7 @@ import './styles/styles.scss';
 import './modules/bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
 import './modules/authModule.js'
-// import axios from "axios";
 import './modules/GSconfig';
-import {signInInGS, openWin} from "./modules/authModule";
 
 // SMOOTH SCROLLING SECTIONS
 $('a[href*=#]:not([href=#])').click(function () {
@@ -34,12 +32,49 @@ $('a[href*=#]:not([href=#])').click(function () {
 //
 // console.log(arr);
 
+document.cookie = [
+    "_ym_uid=1613548060656796267"
+];
 
+let arr = [
+    "_ym_uid=1613548060656796267",
+    "_ym_d=1613548060",
+    "_ym_isad=2",
+    "_ym_visorc=w",
+    "AuthId=4fe968c4-9fa4-4bea-a341-70610a1aef01",
+    "PasswordLength=11"
+];
 
 async function init () {
-    const user = await signInInGS('supportsonar', '73812639019');
-    console.log(`полученный пользователь: ${JSON.stringify(user)}`);
-    openWin();
+    $(function () {
+        let section2 = $('#section2');
+
+        $(window).scroll(() => {
+            let focusBelowTop = ($(window).scrollTop() >= section2.position().top);
+            let focusHigherBottom = $(window).scrollTop() <= (section2.position().top + section2.height());
+            if (focusBelowTop && focusHigherBottom) {
+
+            }
+        })
+    })
+    // const user = await signInInGS('supportsonar', '73812639019');
+    // console.log(`полученный пользователь: ${JSON.stringify(user)}`);
+    // openWin();
+
+    function Cook(key, val) {
+        this.key = key;
+        this.val = val;
+    }
+
+    arr.forEach((el, index) => {
+        el = el.split('=');
+        console.log(el instanceof Array);
+        el = Object.fromEntries(el);
+    })
+    console.log("Получаем массив", arr);
+
+
+    // console.log('Получен массив: ', );
 }
 
     init();
