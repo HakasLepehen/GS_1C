@@ -1,5 +1,6 @@
 import axios from "axios";
 
+//Метод авторизации в системе мониторинга
 export async function signInInGS(login, password) {
     try {
         const resolve = await axios.get(window.configuration.url + 'auth/login', {

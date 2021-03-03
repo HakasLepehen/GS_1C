@@ -44,14 +44,13 @@ body {
   position: relative;
 
   .section1, .section2, .section3 {
+    height: 100vh;
 
     .container {
       //align-items: flex-start;
       font-size: 18px;
-      height: 100%;
+      height: inherit;
       width: 60vw;
-      //background-color: lightgrey;
-      //border: 1px solid black;
 
       h1 {
         //display: block;

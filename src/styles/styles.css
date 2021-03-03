@@ -39,9 +39,12 @@ body {
   color: white;
   position: relative;
 }
+.wrapper .section1, .wrapper .section2, .wrapper .section3 {
+  height: 100vh;
+}
 .wrapper .section1 .container, .wrapper .section2 .container, .wrapper .section3 .container {
   font-size: 18px;
-  height: 100%;
+  height: inherit;
   width: 60vw;
 }
 .wrapper .section1 .container h1, .wrapper .section2 .container h1, .wrapper .section3 .container h1 {

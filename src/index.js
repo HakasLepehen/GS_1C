@@ -3,7 +3,6 @@ import './modules/bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
 import './modules/authModule.js'
 import './modules/GSconfig';
-import {signInInGS, openWin} from "./modules/authModule";
 
 // SMOOTH SCROLLING SECTIONS
 $('a[href*=#]:not([href=#])').click(function () {
@@ -47,12 +46,20 @@ let arr = [
 ];
 
 async function init () {
+    $(function () {
+        let section2 = $('#section2');
+
+        $(window).scroll(() => {
+            let focusBelowTop = ($(window).scrollTop() >= section2.position().top);
+            let focusHigherBottom = $(window).scrollTop() <= (section2.position().top + section2.height());
+            if (focusBelowTop && focusHigherBottom) {
+
+            }
+        })
+    })
     // const user = await signInInGS('supportsonar', '73812639019');
     // console.log(`полученный пользователь: ${JSON.stringify(user)}`);
     // openWin();
-    let obj = {
-
-    }
 
     function Cook(key, val) {
         this.key = key;
@@ -61,11 +68,11 @@ async function init () {
 
     arr.forEach((el, index) => {
         el = el.split('=');
-        let rel = new Cook(el[0], el[1]);
-        arr.push(el[index]);
-        console.log(rel)
+        console.log(el instanceof Array);
+        el = Object.fromEntries(el);
     })
     console.log("Получаем массив", arr);
+
 
     // console.log('Получен массив: ', );
 }
