@@ -3,7 +3,14 @@ import './modules/bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
 import './modules/Session.js'
 import './modules/GSconfig';
-import {signInInGS, Session, deleteCookies, checkTokenFromCookie} from "./modules/Session";
+import {
+    signInInGS,
+    Session,
+    deleteCookies,
+    checkTokenFromCookie,
+    getTokenFromCookie,
+    writeInCookies, openWin
+} from "./modules/Session";
 
 // SMOOTH SCROLLING SECTIONS
 $('a[href*=#]:not([href=#])').click(function () {
@@ -21,7 +28,7 @@ $('a[href*=#]:not([href=#])').click(function () {
     }
 });
 
-// deleteCookies();
+
 
 //Получаем массив печенек
 // let arr = document.cookie.split(';')
@@ -35,7 +42,7 @@ $('a[href*=#]:not([href=#])').click(function () {
 //
 // console.log(arr);
 
-document.cookie = "_ym_uid=1613548060656796267";
+// document.cookie = "_ym_uid=1613548060656796267";
 
 let arr = [
     "_ym_uid=1613548060656796267",
@@ -45,8 +52,22 @@ let arr = [
     "AuthId=4fe968c4-9fa4-4bea-a341-70610a1aef01",
     "PasswordLength=11"
 ];
+deleteCookies();
 
 async function init() {
+    let token = getTokenFromCookie();
+
+    if (!token) {
+        openWin();
+        // const session = await signInInGS('supportsonar', '73812639019')
+        //     .then(res => {
+        //         return res;
+        //     });
+        console.log('сессия: ', session);
+        writeInCookies(`X-Auth=${session.getToken()}`);
+    } else {
+        console.log('Получили токен: ', token);
+    }
     // const session = await signInInGS('supportsonar', '73812639019');
     // console.log(`полученная сессия: ${JSON.stringify(session)}`);
     // if (session.getToken()) {
@@ -55,27 +76,18 @@ async function init() {
     //     alert('Вы не авторизованы');
     // }
 
-    let token = checkTokenFromCookie();
-    if (!token) {
-
-    }
+    // let token = getTokenFromCookie();
+    // if (!token) {
+    //
+    // }
+    // let ar1 = document.querySelectorAll('li');
 }
 
-
-$(function () {
-    let section2 = $('#section2');
-
-    $(window).scroll(() => {
-        let focusBelowTop = ($(window).scrollTop() >= section2.position().top);
-        let focusHigherBottom = $(window).scrollTop() <= (section2.position().top + section2.height());
-        if (focusBelowTop && focusHigherBottom) {
-            init();
-        }
-    })
-})
-// const user = await signInInGS('supportsonar', '73812639019');
-// console.log(`полученный пользователь: ${JSON.stringify(user)}`);
-// openWin();
+$('span').click(function () {
+    if ($(this).html() === 'Калькулятор объектов') {
+        init();
+    }
+});
 
 // arr.forEach((el, index) => {
 //     el = el.split('=');

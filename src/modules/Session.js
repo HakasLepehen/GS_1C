@@ -46,17 +46,19 @@ export function deleteCookies() {
     }
 }
 
-export function checkTokenFromCookie() {
-    let token;
+export function getTokenFromCookie() {
     let cookies = document.cookie.split(';');
 
     for (let i = 0; i < cookies.length; i++) {
         if (cookies[i].includes('X-Auth=')) {
             let pos = cookies[i].indexOf('=');
-            token = cookies[i].substring(pos, cookies[i].length).trim();
+            return cookies[i].substring(pos + 1, cookies[i].length).trim();
         }
     }
-    return token;
+}
+
+export function writeInCookies(str) {
+    document.cookie = str;
 }
 
 export function openWin() {
