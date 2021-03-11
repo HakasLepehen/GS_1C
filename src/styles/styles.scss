@@ -43,7 +43,7 @@ body {
   color: white;
   position: relative;
 
-  .section1, .section2, .section3 {
+  .section1, .section2, .section3, .section4 {
     height: 100vh;
 
     .container {
@@ -88,7 +88,6 @@ body {
         border-radius: 20px;
         z-index: 9999;
         transition: margin-top 1s ease-in;
-        //animation: fall 0.5s 1;
 
         .form-title {
           color: #232946;
@@ -107,18 +106,26 @@ body {
             display: flex;
             flex-direction: column;
             align-content: center;
-            height: 40%;
             min-width: 30vw;
 
             &-login, &-password {
               background-color: #fffffe;
               box-sizing: border-box;
               display: block;
-              height: 60px;
+              min-height: 40px;
               margin: auto auto 10px auto;
               width: 60%;
               border: none;
               border-radius: 5px;
+            }
+            ::after {
+              content: "Ошибка";
+              color: crimson;
+              display: block;
+              font-size: 13px;
+              &:hover {
+                cursor: default;
+              }
             }
           }
 
@@ -145,11 +152,8 @@ body {
               background-color: greenyellow;
               border: 1px solid greenyellow;
               cursor: pointer;
-              transition: 0.1s;
-            }
-
-            &:focus {
               outline: none;
+              transition: 0.3s;
             }
           }
         }
