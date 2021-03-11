@@ -40,13 +40,23 @@ deleteCookies();
 //         }
 //     }));
 
-const navElements = document.querySelectorAll('ul.nav li');
-console.log(navElements);
+console.log(document.querySelector('li.active').dataset.page);
 
-for (let i = 0; i < navElements.length; i++) {
-    console.log('i = ', i);
-    console.log(navElements[i].className === ".active");
-}
+// switch (li.data('page')) {
+//     case 'calc':
+//         initCalculator();
+//         break;
+//
+//     case 'map':
+//         initDealsOnMap();
+//         break;
+// }
+
+//
+// for (let i = 0; i < navElements.length; i++) {
+//     console.log('i = ', i);
+//     console.log('класс: ', navElements[i].getAttributeNames());
+// }
 
 // arr.forEach((el, index) => {
 //     el = el.split('=');
