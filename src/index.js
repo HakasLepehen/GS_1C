@@ -30,15 +30,23 @@ a.forEach((el) => {
 
 deleteCookies();
 
-document.querySelectorAll('.nav__counter')
-    .forEach(el => el.addEventListener('click', function () {
-        if (this.innerHTML === 'Калькулятор объектов') {
-            setTimeout(initCalculator, 1000);
-        }
-        if (this.innerHTML === 'Сделки на карте') {
-            setTimeout(initDealsOnMap, 1000);
-        }
-    }));
+// document.querySelectorAll('.nav__counter')
+//     .forEach(el => el.addEventListener('click', function () {
+//         if (this.innerHTML === 'Калькулятор объектов') {
+//             setTimeout(initCalculator, 1000);
+//         }
+//         if (this.innerHTML === 'Сделки на карте') {
+//             setTimeout(initDealsOnMap, 1000);
+//         }
+//     }));
+
+const navElements = document.querySelectorAll('ul.nav li');
+console.log(navElements);
+
+for (let i = 0; i < navElements.length; i++) {
+    console.log('i = ', i);
+    console.log(navElements[i].className === ".active");
+}
 
 // arr.forEach((el, index) => {
 //     el = el.split('=');

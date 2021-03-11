@@ -1,14 +1,11 @@
 import {getTokenFromCookie, openWin} from "./Session";
 
-export async function initCalculator() {
+export function initCalculator() {
 
-    const navElements = document.querySelectorAll('ul.nav li');
-
-    console.log('navElements: ', navElements);
 
     let token = getTokenFromCookie();
 
-    if (navElements[1].classList.value === 'active' && !token) {
+    if (!token) {
         setTimeout(openWin, 1000);
         $('.btn-submit').click(function () {
             alert($('.form-body-login').value)
