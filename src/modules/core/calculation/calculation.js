@@ -1,4 +1,4 @@
-import {getTokenFromCookie, openWin} from "./Session";
+import {getTokenFromCookie, openWin, Session, signInInGS, writeInCookies} from "./Session";
 
 export function initCalculator() {
 
@@ -6,31 +6,29 @@ export function initCalculator() {
     let token = getTokenFromCookie();
 
     if (!token) {
+
         setTimeout(openWin, 1000);
-        $('.btn-submit').click(function () {
-            alert($('.form-body-login').value)
+        document.querySelector('.btn-submit').addEventListener('click', async function () {
+            let login = document.querySelector('.form-body-login').value.trim();
+            let password = document.querySelector('.form-body-password').value.trim();
+
+            console.log('Введенный логин:', login);
+            console.log('Введенный пароль:', password);
+            // 73812639019
+            let session = await signInInGS(login, password);
+
+            console.log('сессия: ', session);
+
+            if (session instanceof Session)
+                writeInCookies(`X-Auth=${session.getToken()}`);
+
+            if (session instanceof Error || !session) {
+                let errorSelector = document.querySelector('.form-body::after');
+                console.log(session);
+            }
         })
 
-        // const session = await signInInGS('supportsonar', '73812639019')
-        //     .then(res => {
-        //         return res;
-        //     });
-        // console.log('сессия: ', session);
-        // writeInCookies(`X-Auth=${session.getToken()}`);
     } else {
         console.log('Получили токен: ', token);
     }
-    // const session = await signInInGS('supportsonar', '73812639019');
-    // console.log(`полученная сессия: ${JSON.stringify(session)}`);
-    // if (session.getToken()) {
-    //     alert('Вы авторизованы!');
-    // } else {
-    //     alert('Вы не авторизованы');
-    // }
-
-    // let token = getTokenFromCookie();
-    // if (!token) {
-    //
-    // }
-    // let ar1 = document.querySelectorAll('li');
 }

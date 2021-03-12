@@ -30,45 +30,18 @@ a.forEach((el) => {
 
 deleteCookies();
 
-// document.querySelectorAll('.nav__counter')
-//     .forEach(el => el.addEventListener('click', function () {
-//         if (this.innerHTML === 'Калькулятор объектов') {
-//             setTimeout(initCalculator, 1000);
-//         }
-//         if (this.innerHTML === 'Сделки на карте') {
-//             setTimeout(initDealsOnMap, 1000);
-//         }
-//     }));
+//Запускаем необходимое приложение в зависимости от нажатого элемента меню.
+const navBar = document.getElementById('navbar-example');
+navBar.addEventListener('click', function (e) {
+    console.log(e.target.innerHTML);
 
-console.log(document.querySelector('li.active').dataset.page);
-
-// switch (li.data('page')) {
-//     case 'calc':
-//         initCalculator();
-//         break;
-//
-//     case 'map':
-//         initDealsOnMap();
-//         break;
-// }
-
-//
-// for (let i = 0; i < navElements.length; i++) {
-//     console.log('i = ', i);
-//     console.log('класс: ', navElements[i].getAttributeNames());
-// }
-
-// arr.forEach((el, index) => {
-//     el = el.split('=');
-//     console.log(el instanceof Array);
-//     el = Object.fromEntries(el);
-// })
-// console.log("Получаем массив", arr);
-
-
-// console.log('Получен массив: ', );
-
-
-
-
-
+    switch (e.target.innerHTML) {
+        case 'Калькулятор объектов':
+            console.log('Запущено приложение калькулятор');
+            initCalculator();
+            break;
+        case 'Сделки на карте':
+            initDealsOnMap();
+            break;
+    }
+})

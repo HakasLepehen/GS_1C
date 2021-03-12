@@ -1,3 +1,6 @@
+@import "colors";
+@import "ui-mixins";
+
 @font-face {
   font-family: "Montserrat";
   src: url("./../fonts/Montserrat-regular.ttf");
@@ -28,35 +31,32 @@
 body {
   box-sizing: border-box;
   margin: 0;
+  overflow: hidden;
+  text-shadow: 0 0 2px white;
 }
 
 .wrapper {
-  min-height: 100vh;
-  width: 100%;
+  color: white;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
+  min-height: 100vh;
+  width: 100%;
   z-index: 0;
 
-  -moz-box-shadow: 0 0 5px white;
-  -webkit-box-shadow: 0 0 5px white;
-  text-shadow: 0 0 5px white;
-  color: white;
   position: relative;
 
   .section1, .section2, .section3, .section4 {
     height: 100vh;
 
     .container {
-      //align-items: flex-start;
       font-size: 18px;
       height: inherit;
       width: 60vw;
 
       h1 {
-        //display: block;
-        text-align: center;
         font-size: 52px;
         margin: auto;
+        text-align: center;
       }
     }
   }
@@ -66,63 +66,64 @@ body {
     .container {
 
       span {
-        margin: 0 auto;
         display: block;
         cursor: pointer;
+        margin: 0 auto;
       }
 
       .modal {
-        color: #232946;
+        align-items: center;
+        background: $backgroundWindow;
+        border-radius: 20px;
+        border: 1px solid #333;
+        color: $mainBackground;
         display: none;
         flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
         height: 30vh;
-        width: 40%;
-        top: 35vh;
+        justify-content: space-between;
         margin: 0 auto;
         padding: 20px;
-        background: #b8c1ec;
-        border: 1px solid #333;
-        border-radius: 20px;
-        z-index: 9999;
+        position: relative;
+        top: 35vh;
         transition: margin-top 1s ease-in;
+        width: 40%;
+        z-index: 9999;
 
         .form-title {
-          color: #232946;
-          width: 100%;
+          color: $mainBackground;
           font-size: 2rem;
           font-weight: 700;
           text-align: center;
+          width: 100%;
         }
 
         .form-wrapper {
-          height: 70%;
           display: flex;
           flex-direction: column;
+          height: 70%;
 
           .form-body {
+            align-content: center;
             display: flex;
             flex-direction: column;
-            align-content: center;
             min-width: 30vw;
 
             &-login, &-password {
-              background-color: #fffffe;
+              background-color: $inputBackground;
+              border-radius: 5px;
+              border: none;
               box-sizing: border-box;
               display: block;
-              min-height: 40px;
               margin: auto auto 10px auto;
+              min-height: 40px;
               width: 60%;
-              border: none;
-              border-radius: 5px;
             }
-            ::after {
+            :after {
               content: "Ошибка";
-              color: crimson;
+              color: $error;
               display: block;
               font-size: 13px;
+              text-shadow: none;
               &:hover {
                 cursor: default;
               }
@@ -130,42 +131,9 @@ body {
           }
 
           .btn-submit {
-            background-color: #fffffe;
-            box-sizing: border-box;
-            display: block;
-            height: 40px;
-            margin: auto auto 10px auto;
-            width: 60%;
-            border: none;
-            border-radius: 5px;
-            font-size: 20px;
-            transition: 0.8s;
-
-            &:hover {
-              background-color: #eebbc3;
-              border: 1px solid #E79DAB;
-              cursor: pointer;
-              transition: 0.1s;
-            }
-
-            &:focus {
-              background-color: greenyellow;
-              border: 1px solid greenyellow;
-              cursor: pointer;
-              outline: none;
-              transition: 0.3s;
-            }
+            @include submit-btn(40px, 60%);
           }
         }
-      }
-
-      .overflow {
-        width: 100%;
-        height: inherit;
-        z-index: 9998;
-        background: rgba(0, 0, 0, 0.7);
-        position: relative;
-        top: -36vh;
       }
     }
   }
@@ -173,19 +141,19 @@ body {
 
 
 section {
+  align-items: center;
+  background-color: $mainBackground;
   box-sizing: border-box;
-  height: 100vh;
-  font-size: 40px;
-  font-weight: 100;
-  background-color: #232946;
-
   display: flex;
   flex-direction: column;
+  font-size: 40px;
+  font-weight: 100;
+  height: 100vh;
   justify-content: flex-start;
-  align-items: center;
 }
 
 .nav {
+  text-shadow: 0 0 5px white;
   &__wrapper {
     position: fixed;
     height: 100%;

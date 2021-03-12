@@ -1,3 +1,6 @@
 export function initDealsOnMap() {
-    alert('Запущено приложение с картой');
+    setTimeout(
+        () => alert('Запущено приложение с картой'),
+        1000
+    )
 }
