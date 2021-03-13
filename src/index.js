@@ -4,7 +4,6 @@ import './fonts/Montserrat-Regular.ttf';
 import './modules/vendors/GSconfig';
 import {initDealsOnMap} from "./modules/core/dealsOnMap/dealsOnMap";
 import {initCalculator} from "./modules/core/calculation/Сalculation";
-import {Cookie} from "./modules/core/calculation/objects/Cookie";
 
 // Плавное переключение по навигации
 const a = document.querySelectorAll('a[href*="#"]:not([href="#"])');

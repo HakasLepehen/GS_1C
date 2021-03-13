@@ -42,7 +42,6 @@ body {
   min-height: 100vh;
   width: 100%;
   z-index: 0;
-
   position: relative;
 
   .section1, .section2, .section3, .section4 {
@@ -63,79 +62,100 @@ body {
 
   .section2 {
 
-    .container {
+    .modal {
+      align-items: center;
+      background: $backgroundWindow;
+      border-radius: 20px;
+      border: 1px solid #333;
+      color: $mainBackground;
+      display: none;
+      flex-direction: column;
+      min-height: 40vh;
+      justify-content: space-around;
+      margin: 0 auto;
+      padding: 10px;
+      position: relative;
+      top: 35vh;
+      transition: margin-top 1s ease-in;
+      width: 30%;
+      z-index: 9999;
 
-      span {
-        display: block;
-        cursor: pointer;
-        margin: 0 auto;
+      .form-title-wrapper {
+        color: $mainBackground;
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        width: 100%;
       }
 
-      .modal {
-        align-items: center;
-        background: $backgroundWindow;
-        border-radius: 20px;
-        border: 1px solid #333;
-        color: $mainBackground;
-        display: none;
+      .form-wrapper {
+        display: flex;
         flex-direction: column;
-        min-height: 40vh;
-        justify-content: space-around;
-        margin: 0 auto;
-        padding: 10px;
-        position: relative;
-        top: 35vh;
-        transition: margin-top 1s ease-in;
-        width: 40%;
-        z-index: 9999;
+        min-height: 22vh;
+        width: 100%;
 
-        .form-title-wrapper {
-          color: $mainBackground;
-          font-size: 2rem;
-          font-weight: 700;
-          text-align: center;
-          width: 100%;
-        }
-
-        .form-wrapper {
+        .form-body {
+          align-content: center;
           display: flex;
           flex-direction: column;
-          min-height: 22vh;
+
+          &-login, &-password {
+            background-color: $inputBackground;
+            border-radius: 5px;
+            border: none;
+            box-sizing: border-box;
+            display: block;
+            margin: auto auto 10px auto;
+            min-height: 40px;
+            width: 80%;
+          }
+
+          span {
+            color: $error;
+            margin: auto;
+            display: block;
+            font-size: 10px;
+            text-align: center;
+            text-shadow: none;
+
+            &:hover {
+              cursor: default;
+            }
+          }
+        }
+
+        .btn-submit {
+          @include submit-btn(40px, 80%);
+        }
+      }
+    }
+
+    h1 {
+      position: absolute;
+      margin: 0;
+    }
+
+    .work-wrapper {
+      background-color: navajowhite;
+      height: 100vh;
+      margin: auto 0 auto auto;
+      width: calc(100% - 434px);
+      overflow: hidden;
+      padding-top: 90px;
+
+      .work-data {
+
+        height: 100%;
+        overflow-y: scroll;
+
+        .client-data {
+          border: 1px solid black;
+          border-bottom: none;
+          display: block;
           width: 100%;
-
-          .form-body {
-            align-content: center;
-            display: flex;
-            flex-direction: column;
-
-            &-login, &-password {
-              background-color: $inputBackground;
-              border-radius: 5px;
-              border: none;
-              box-sizing: border-box;
-              display: block;
-              margin: auto auto 10px auto;
-              min-height: 40px;
-              width: 80%;
-            }
-
-            span {
-              color: $error;
-              margin: auto;
-              display: block;
-              font-size: 10px;
-              text-align: center;
-              text-shadow: none;
-
-              &:hover {
-                cursor: default;
-              }
-            }
-          }
-
-          .btn-submit {
-            @include submit-btn(40px, 80%);
-          }
+          background-color: #b8c1ec;
+          height: 40px;
+          font-size: 18px;
         }
       }
     }
@@ -162,7 +182,6 @@ section {
     position: fixed;
     height: 100%;
     padding: 24px;
-
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
