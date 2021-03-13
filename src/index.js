@@ -2,10 +2,9 @@ import './styles/styles.scss';
 import './modules/vendors/bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
 import './modules/vendors/GSconfig';
-
 import {initDealsOnMap} from "./modules/core/dealsOnMap/dealsOnMap";
-import {deleteCookies} from "./modules/core/calculation/Session";
-import {initCalculator} from "./modules/core/calculation/calculation";
+import {initCalculator} from "./modules/core/calculation/Сalculation";
+import {Cookie} from "./modules/core/calculation/objects/Cookie";
 
 // Плавное переключение по навигации
 const a = document.querySelectorAll('a[href*="#"]:not([href="#"])');
@@ -27,8 +26,6 @@ a.forEach((el) => {
         }
     })
 })
-
-deleteCookies();
 
 //Запускаем необходимое приложение в зависимости от нажатого элемента меню.
 const navBar = document.getElementById('navbar-example');

@@ -79,17 +79,17 @@ body {
         color: $mainBackground;
         display: none;
         flex-direction: column;
-        height: 30vh;
-        justify-content: space-between;
+        min-height: 40vh;
+        justify-content: space-around;
         margin: 0 auto;
-        padding: 20px;
+        padding: 10px;
         position: relative;
         top: 35vh;
         transition: margin-top 1s ease-in;
         width: 40%;
         z-index: 9999;
 
-        .form-title {
+        .form-title-wrapper {
           color: $mainBackground;
           font-size: 2rem;
           font-weight: 700;
@@ -100,13 +100,13 @@ body {
         .form-wrapper {
           display: flex;
           flex-direction: column;
-          height: 70%;
+          min-height: 22vh;
+          width: 100%;
 
           .form-body {
             align-content: center;
             display: flex;
             flex-direction: column;
-            min-width: 30vw;
 
             &-login, &-password {
               background-color: $inputBackground;
@@ -116,14 +116,17 @@ body {
               display: block;
               margin: auto auto 10px auto;
               min-height: 40px;
-              width: 60%;
+              width: 80%;
             }
-            :after {
-              content: "Ошибка";
+
+            span {
               color: $error;
+              margin: auto;
               display: block;
-              font-size: 13px;
+              font-size: 10px;
+              text-align: center;
               text-shadow: none;
+
               &:hover {
                 cursor: default;
               }
@@ -131,7 +134,7 @@ body {
           }
 
           .btn-submit {
-            @include submit-btn(40px, 60%);
+            @include submit-btn(40px, 80%);
           }
         }
       }
@@ -154,6 +157,7 @@ section {
 
 .nav {
   text-shadow: 0 0 5px white;
+
   &__wrapper {
     position: fixed;
     height: 100%;
