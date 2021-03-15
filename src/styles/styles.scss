@@ -70,9 +70,9 @@ body {
       color: $mainBackground;
       display: none;
       flex-direction: column;
-      min-height: 40vh;
       justify-content: space-around;
       margin: 0 auto;
+      min-height: 40vh;
       padding: 10px;
       position: relative;
       top: 35vh;
@@ -133,6 +133,7 @@ body {
     h1 {
       position: absolute;
       margin: 0;
+      z-index: 1;
     }
 
     .work-wrapper {
@@ -142,6 +143,9 @@ body {
       width: calc(100% - 434px);
       overflow: hidden;
       padding-top: 90px;
+      position: absolute;
+      left: 434px;
+      z-index: 0;
 
       .work-data {
 

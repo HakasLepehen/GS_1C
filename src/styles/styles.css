@@ -46,9 +46,9 @@ body {
     color: #232946;
     display: none;
     flex-direction: column;
-    min-height: 40vh;
     justify-content: space-around;
     margin: 0 auto;
+    min-height: 40vh;
     padding: 10px;
     position: relative;
     top: 35vh;
@@ -89,22 +89,25 @@ body {
           .wrapper .section2 .modal .form-wrapper .form-body span:hover {
             cursor: default; }
       .wrapper .section2 .modal .form-wrapper .btn-submit {
+        -moz-transition: 2s ease;
+        /* Firefox 4 */
+        -o-transition: 2s ease;
+        /* Opera */
+        -webkit-transition: 2s ease;
+        /* Safari and Chrome */
         background-color: #cdfccd;
         border-radius: 5px;
         border: none;
         box-sizing: border-box;
         display: block;
-        font-size: 20px;
+        font-size: 14px;
         height: 40px;
+        letter-spacing: 1px;
+        line-height: 20px;
         margin: auto auto 10px auto;
+        text-transform: uppercase;
         transition: 0.8s;
-        width: 80%;
-        -webkit-transition: 2s ease;
-        /* Safari and Chrome */
-        -moz-transition: 2s ease;
-        /* Firefox 4 */
-        -o-transition: 2s ease;
-        /* Opera */ }
+        width: 80%; }
         .wrapper .section2 .modal .form-wrapper .btn-submit:hover {
           background-color: #eebbc3;
           border: 1px solid #E79DAB;
@@ -124,14 +127,18 @@ body {
           transition: 0.3s; }
   .wrapper .section2 h1 {
     position: absolute;
-    margin: 0; }
+    margin: 0;
+    z-index: 1; }
   .wrapper .section2 .work-wrapper {
     background-color: navajowhite;
     height: 100vh;
     margin: auto 0 auto auto;
     width: calc(100% - 434px);
     overflow: hidden;
-    padding-top: 90px; }
+    padding-top: 90px;
+    position: absolute;
+    left: 434px;
+    z-index: 0; }
     .wrapper .section2 .work-wrapper .work-data {
       height: 100%;
       overflow-y: scroll; }

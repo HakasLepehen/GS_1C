@@ -1,17 +1,20 @@
 @mixin submit-btn($height, $width) {
+  -moz-transition: 2s ease; /* Firefox 4 */
+  -o-transition: 2s ease; /* Opera */
+  -webkit-transition: 2s ease; /* Safari and Chrome */
   background-color: #cdfccd;
   border-radius: 5px;
   border: none;
   box-sizing: border-box;
   display: block;
-  font-size: 20px;
+  font-size: 14px;
   height: $height;
+  letter-spacing: 1px;
+  line-height: 20px;
   margin: auto auto 10px auto;
+  text-transform: uppercase;
   transition: 0.8s;
   width: $width;
-  -webkit-transition: 2s ease; /* Safari and Chrome */
-  -moz-transition: 2s ease; /* Firefox 4 */
-  -o-transition: 2s ease; /* Opera */
 
   &:hover {
     background-color: #eebbc3;
