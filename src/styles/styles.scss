@@ -137,8 +137,7 @@ body {
     }
 
     .work-wrapper {
-      background-color: navajowhite;
-      height: 100vh;
+      height: calc(100vh - 2px);
       margin: auto 0 auto auto;
       width: calc(100% - 434px);
       overflow: hidden;
@@ -152,14 +151,32 @@ body {
         height: 100%;
         overflow-y: scroll;
 
+
+
         .client-data {
-          border: 1px solid black;
-          border-bottom: none;
-          display: block;
+          align-items: center;
+          //border: 2px solid white;
+          border-radius: 5px;
+          display: flex;
+          font-weight: 900;
           width: 100%;
-          background-color: #b8c1ec;
-          height: 40px;
+          //opacity: 0.2;
+          min-height: 60px;
           font-size: 18px;
+          padding: 0 20px;
+
+          &:hover {
+            background-color: $backgroundWindow;
+            transition: background-color 0.8s ease-in-out;
+          }
+
+          a {
+            color: $inputBackground;
+            letter-spacing: 1px;
+            text-shadow: none;
+            text-decoration: none;
+            opacity: 1;
+          }
         }
       }
     }
