@@ -154,6 +154,64 @@ body {
   margin: 0;
   z-index: 1;
 }
+.wrapper .section2 .service-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+}
+.wrapper .section2 .service-buttons .save-doc, .wrapper .section2 .service-buttons .print {
+  -moz-transition: 2s ease;
+  /* Firefox 4 */
+  -o-transition: 2s ease;
+  /* Opera */
+  -webkit-transition: 2s ease;
+  /* Safari and Chrome */
+  background-color: #cdfccd;
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+  display: block;
+  font-size: 14px;
+  height: 50px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  margin: auto auto 10px auto;
+  text-transform: uppercase;
+  transition: 0.8s;
+  width: 100px;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  z-index: 1;
+}
+.wrapper .section2 .service-buttons .save-doc:hover, .wrapper .section2 .service-buttons .print:hover {
+  background-color: #eebbc3;
+  border: 1px solid #E79DAB;
+  cursor: pointer;
+  transition: 0.1s;
+}
+.wrapper .section2 .service-buttons .save-doc:focus, .wrapper .section2 .service-buttons .print:focus {
+  background-color: #eebbc3;
+  border: 1px solid #E79DAB;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s;
+}
+.wrapper .section2 .service-buttons .save-doc:active, .wrapper .section2 .service-buttons .print:active {
+  background-color: #cdfccd;
+  border: 1px solid #cdfccd;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s;
+}
+.wrapper .section2 .service-buttons .save-doc {
+  background: center/contain no-repeat url("../media/cloud-arrow-down.svg");
+  margin-right: 5px;
+}
+.wrapper .section2 .service-buttons .print {
+  background: center/contain no-repeat url("../media/printer.svg");
+}
 .wrapper .section2 .work-wrapper {
   height: calc(100vh - 2px);
   margin: auto 0 auto auto;
@@ -164,26 +222,113 @@ body {
   left: 434px;
   z-index: 0;
 }
+.wrapper .section2 .work-wrapper .client-data-header {
+  display: flex;
+  position: sticky;
+  font-size: 25px;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  padding: 0 40px 0 20px;
+}
+.wrapper .section2 .work-wrapper .client-data-header .client-name {
+  width: 80%;
+  margin: auto;
+}
+.wrapper .section2 .work-wrapper .client-data-header .numeric-data {
+  display: flex;
+  flex-direction: row;
+  width: 20%;
+  font-size: 18px;
+}
+.wrapper .section2 .work-wrapper .client-data-header .numeric-data .active-objects-header, .wrapper .section2 .work-wrapper .client-data-header .numeric-data .inactive-objects-header {
+  text-align: center;
+  flex: 0 0 50%;
+}
 .wrapper .section2 .work-wrapper .work-data {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 95%;
   overflow-y: scroll;
+  margin-top: 20px;
+  padding: 0 20px;
 }
 .wrapper .section2 .work-wrapper .work-data .client-data {
-  align-items: center;
   border-radius: 5px;
   display: flex;
+  flex-direction: row;
   font-weight: 900;
+  justify-content: space-evenly;
   width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
   min-height: 60px;
   font-size: 18px;
-  padding: 0 20px;
 }
 .wrapper .section2 .work-wrapper .work-data .client-data:hover {
   background-color: #b8c1ec;
+  color: #232946;
   transition: background-color 0.8s ease-in-out;
 }
+.wrapper .section2 .work-wrapper .work-data .client-data .client-data-label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-width: 80%;
+}
+.wrapper .section2 .work-wrapper .work-data .client-data .client-data-label a {
+  text-align: left;
+  margin: auto auto auto 0;
+}
+.wrapper .section2 .work-wrapper .work-data .client-data-buttons {
+  display: flex;
+  justify-content: space-around;
+  flex: 0 0 auto;
+  flex-direction: row;
+  min-width: 200px;
+  width: 20%;
+}
+.wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects, .wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects {
+  display: flex;
+  position: relative;
+  border-radius: 15px;
+  justify-content: center;
+  flex: 0 0 45%;
+  text-align: center;
+  align-items: center;
+  height: 90%;
+  top: -2px;
+}
+.wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects:hover, .wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:hover {
+  cursor: pointer;
+}
+.wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects:active, .wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects:focus, .wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:active, .wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:focus {
+  outline: none;
+}
+.wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects {
+  background-color: darkgreen;
+  box-shadow: 0 2px 0 3px #023202;
+  -webkit-box-shadow: 0 2px 0 3px #023202;
+  -moz-box-shadow: 0 2px 0 3px #023202;
+}
+.wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects:active {
+  top: 2px;
+  box-shadow: 0 0 2px 0 #025a02;
+  -webkit-box-shadow: 0 0 2px 0 #025a02;
+  -moz-box-shadow: 0 0 2px 0 #025a02;
+}
+.wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects {
+  background-color: #ff8c00;
+  box-shadow: 0 2px 0 3px #a96002;
+  -webkit-box-shadow: 0 2px 0 3px #a96002;
+  -moz-box-shadow: 0 2px 0 3px #a96002;
+}
+.wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:active {
+  top: 2px;
+  box-shadow: 0 0 2px 0 #a96002;
+  -webkit-box-shadow: 0 0 2px 0 #a96002;
+  -moz-box-shadow: 0 0 2px 0 #a96002;
+}
 .wrapper .section2 .work-wrapper .work-data .client-data a {
-  color: #fffffe;
   letter-spacing: 1px;
   text-shadow: none;
   text-decoration: none;

@@ -7,8 +7,9 @@ import {
 } from "./services/Auth";
 import {Cookie} from "./objects/Cookie";
 
+let token = Cookie.getTokenFromCookies();
+
 export function initCalculator() {
-    let token = Cookie.getTokenFromCookies();
 
     if (!token) {
         setTimeout(openAuthWindow, 1000);

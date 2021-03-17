@@ -29,11 +29,9 @@ a.forEach((el) => {
 //Запускаем необходимое приложение в зависимости от нажатого элемента меню.
 const navBar = document.getElementById('navbar-example');
 navBar.addEventListener('click', function (e) {
-    console.log(e.target.innerHTML);
 
     switch (e.target.innerHTML) {
         case 'Калькулятор объектов':
-            console.log('Запущено приложение калькулятор');
             initCalculator();
             break;
         case 'Сделки на карте':

@@ -10,7 +10,6 @@ export async function signInInGS(login, password) {
                 password: password
             }
         });
-        console.log(resolve.data);
         if (resolve.data.Error) {
             return new Error('Вы неправильно ввели логин или пароль');
         } else {

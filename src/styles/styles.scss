@@ -136,6 +136,30 @@ body {
       z-index: 1;
     }
 
+    .service-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      width: 100%;
+
+      .save-doc, .print {
+        @include submit-btn(50px, 100px);
+        display: flex;
+        justify-content: flex-end;
+        margin: 0;
+        z-index: 1;
+      }
+
+      .save-doc {
+        background: center / contain no-repeat url("../media/cloud-arrow-down.svg");
+        margin-right: 5px;
+      }
+
+      .print {
+        background: center / contain no-repeat url("../media/printer.svg");
+      }
+    }
+
     .work-wrapper {
       height: calc(100vh - 2px);
       margin: auto 0 auto auto;
@@ -146,32 +170,131 @@ body {
       left: 434px;
       z-index: 0;
 
+      .client-data-header {
+        display: flex;
+        position: sticky;
+        font-size: 25px;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+        padding: 0 40px 0 20px;
+
+        .client-name {
+          width: 80%;
+          margin: auto;
+        }
+
+        .numeric-data {
+          display: flex;
+          flex-direction: row;
+          width: 20%;
+          font-size: 18px;
+
+          .active-objects-header, .inactive-objects-header {
+            text-align: center;
+            flex: 0 0 50%;
+          }
+        }
+      }
+
       .work-data {
-
-        height: 100%;
+        display: flex;
+        flex-direction: column;
+        max-height: 95%;
         overflow-y: scroll;
-
+        margin-top: 20px;
+        padding: 0 20px;
 
 
         .client-data {
-          align-items: center;
-          //border: 2px solid white;
           border-radius: 5px;
           display: flex;
+          flex-direction: row;
           font-weight: 900;
+          justify-content: space-evenly;
           width: 100%;
-          //opacity: 0.2;
+          margin-top: 10px;
+          margin-bottom: 20px;
           min-height: 60px;
           font-size: 18px;
-          padding: 0 20px;
+
 
           &:hover {
             background-color: $backgroundWindow;
+            color: $mainBackground;
             transition: background-color 0.8s ease-in-out;
           }
 
+          .client-data-label {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            min-width: 80%;
+
+            a {
+              text-align: left;
+              margin: auto auto auto 0;
+            }
+          }
+
+          &-buttons {
+            display: flex;
+            justify-content: space-around;
+            flex: 0 0 auto;
+            flex-direction: row;
+            min-width: 200px;
+            width: 20%;
+
+            .active-objects, .inactive-objects {
+              display: flex;
+              position: relative;
+              border-radius: 15px;
+              justify-content: center;
+              flex: 0 0 45%;
+              text-align: center;
+              align-items: center;
+              height: 90%;
+              top: -2px;
+
+
+              &:hover {
+                cursor: pointer;
+              }
+
+              &:active, &:focus {
+                outline: none;
+              }
+            }
+
+            .active-objects {
+              background-color: $active;
+              box-shadow: 0 2px 0 3px rgba(2, 50, 2, 1);
+              -webkit-box-shadow: 0 2px 0 3px rgba(2, 50, 2, 1);
+              -moz-box-shadow: 0 2px 0 3px rgba(2, 50, 2, 1);
+
+              &:active {
+                top: 2px;
+                box-shadow: 0 0 2px 0 rgba(2, 90, 2, 1);
+                -webkit-box-shadow: 0 0 2px 0 rgba(2, 90, 2, 1);
+                -moz-box-shadow: 0 0 2px 0 rgba(2, 90, 2, 1);
+              }
+            }
+
+            .inactive-objects {
+              background-color: $inactive;
+              box-shadow: 0 2px 0 3px rgba(169, 96, 2, 1);
+              -webkit-box-shadow: 0 2px 0 3px rgba(169, 96, 2, 1);
+              -moz-box-shadow: 0 2px 0 3px rgba(169, 96, 2, 1);
+
+              &:active {
+                top: 2px;
+                box-shadow: 0 0 2px 0 rgb(169, 96, 2);
+                -webkit-box-shadow: 0 0 2px 0 rgb(169, 96, 2);
+                -moz-box-shadow: 0 0 2px 0 rgb(169, 96, 2);
+              }
+            }
+          }
+
           a {
-            color: $inputBackground;
             letter-spacing: 1px;
             text-shadow: none;
             text-decoration: none;
