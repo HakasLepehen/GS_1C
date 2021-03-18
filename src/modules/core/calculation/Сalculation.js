@@ -9,11 +9,9 @@ import {
 } from "./services/Auth";
 import {getAgents} from "./services/Agent-operations";
 
-let token = Cookie.getTokenFromCookies();
-let agents = null;
-
 export function initCalculator() {
-
+    let token = Cookie.getTokenFromCookies();
+    let agents = null;
 
     if (!token) {
         setTimeout(openAuthWindow, 1000);
