@@ -37,10 +37,10 @@ export function initCalculator() {
         })
     }
     (async function () {
-       agents = await getAgents(token)
-           .then(res => {
-               return res
-           });
-       console.log('Агенты перед таймаутом', agents)
+        agents = await getAgents(token)
+            .then(res => {
+                return res
+            });
+        console.log('Агенты перед таймаутом', agents)
     })();
 }

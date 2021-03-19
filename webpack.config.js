@@ -5,7 +5,6 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
 const webpack = require('webpack');
-const axios = require('axios');
 
 console.log(process.env.NODE_ENV);
 console.log(__dirname);
