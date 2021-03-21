@@ -1,11 +1,20 @@
 export class Company {
 
-    constructor(brand, activeCount, inactiveCount) {
+    constructor(id, brand, activeCount, inactiveCount) {
+        this._id = id;
         this._brand = brand;
         this._activeCount = activeCount;
         this._inactiveCount = inactiveCount;
     }
 
+
+    get id() {
+        return this._id;
+    }
+
+    set id(value) {
+        this._id = value;
+    }
 
     get brand() {
         return this._brand;

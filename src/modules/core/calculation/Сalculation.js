@@ -1,15 +1,17 @@
 import {Session} from "./objects/Session";
+import {Cookie} from "./objects/Cookie";
+import {Company} from "./objects/Company";
 import {
     closeAuthWindow,
     openAuthWindow,
     signInInGS,
     writeErrorToUser
 } from "./services/Auth";
-import {Cookie} from "./objects/Cookie";
-
-let token = Cookie.getTokenFromCookies();
+import {getAgents} from "./services/Agent-operations";
 
 export function initCalculator() {
+    let token = Cookie.getTokenFromCookies();
+    let agents = null;
 
     if (!token) {
         setTimeout(openAuthWindow, 1000);
@@ -33,7 +35,12 @@ export function initCalculator() {
                 }
             }
         })
-    } else {
-        console.log('Получили токен: ', token);
     }
+    (async function () {
+        agents = await getAgents(token)
+            .then(res => {
+                return res
+            });
+        console.log('Агенты перед таймаутом', agents)
+    })();
 }

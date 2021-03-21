@@ -20,6 +20,10 @@ export class Cookie{
         this._value = value;
     }
 
+    deleteTokenFromCookie(_key) {
+
+    }
+
     writeCookie() {
         document.cookie = `${this._key}=${this._value}`;
     }
