@@ -162,36 +162,39 @@ body {
 
     .work-wrapper {
       height: calc(100vh - 2px);
+      left: 434px;
       margin: auto 0 auto auto;
-      width: calc(100% - 434px);
       overflow: hidden;
       padding-top: 90px;
       position: absolute;
-      left: 434px;
+      width: calc(100% - 434px);
       z-index: 0;
 
       .client-data-header {
         display: flex;
-        position: sticky;
         font-size: 25px;
-        margin-bottom: 20px;
         letter-spacing: 2px;
+        margin-bottom: 20px;
         padding: 0 40px 0 20px;
+        position: sticky;
 
         .client-name {
-          width: 80%;
           margin: auto;
+          width: 80%;
         }
 
         .numeric-data {
           display: flex;
           flex-direction: row;
-          width: 20%;
           font-size: 18px;
+          width: 20%;
 
           .active-objects-header, .inactive-objects-header {
-            text-align: center;
+            display: flex;
             flex: 0 0 50%;
+            font-size: 14px;
+            margin: auto;
+            text-align: center;
           }
         }
       }
@@ -199,24 +202,22 @@ body {
       .work-data {
         display: flex;
         flex-direction: column;
+        margin-top: 20px;
         max-height: 95%;
         overflow-y: scroll;
-        margin-top: 20px;
         padding: 0 20px;
-
 
         .client-data {
           border-radius: 5px;
           display: flex;
           flex-direction: row;
+          font-size: 18px;
           font-weight: 900;
           justify-content: space-evenly;
-          width: 100%;
-          margin-top: 10px;
           margin-bottom: 20px;
+          margin-top: 10px;
           min-height: 60px;
-          font-size: 18px;
-
+          width: 100%;
 
           &:hover {
             background-color: $backgroundWindow;
@@ -225,34 +226,34 @@ body {
           }
 
           .client-data-label {
+            align-items: flex-start;
             display: flex;
             justify-content: flex-start;
-            align-items: flex-start;
             min-width: 80%;
 
             a {
-              text-align: left;
               margin: auto auto auto 0;
+              text-align: left;
             }
           }
 
           &-buttons {
             display: flex;
-            justify-content: space-around;
-            flex: 0 0 auto;
             flex-direction: row;
+            flex: 0 0 auto;
+            justify-content: space-around;
             min-width: 200px;
             width: 20%;
 
             .active-objects, .inactive-objects {
-              display: flex;
-              position: relative;
-              border-radius: 15px;
-              justify-content: center;
-              flex: 0 0 45%;
-              text-align: center;
               align-items: center;
+              border-radius: 15px;
+              display: flex;
+              flex: 0 0 45%;
               height: 90%;
+              justify-content: center;
+              position: relative;
+              text-align: center;
               top: -2px;
 
 
@@ -305,7 +306,6 @@ body {
     }
   }
 }
-
 
 section {
   align-items: center;
