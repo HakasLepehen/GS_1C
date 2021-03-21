@@ -18,13 +18,15 @@ export class Calculator {
   }
 
   // эта функция выполняется при каждом открытии раздела "Калькулятор объектов"
-  async init() {
+  init() {
 
-    if (this.isLogged) {
-      console.log('Я уже залогинен');
-    } else {
-      return openAuthWindow();
-    }
+    if (!this.isLogged) return openAuthWindow();
+
+    this.loadAgents();
+
+  }
+
+  async loadAgents() {
 
     let agents;
     
@@ -77,7 +79,6 @@ export class Calculator {
           password: password
         }
       });
-      debugger;
 
       if (data.Error) {
         let err = new Error(data.Error);
@@ -86,10 +87,15 @@ export class Calculator {
       }
 
       this.user = data.User; // мб пригодится
-
+      this.token = data.AuthId;
+      
       closeAuthWindow();
 
-      return setCookie('X-Auth', data.AuthId);
+      setCookie('X-Auth', data.AuthId);
+
+      this.init();
+
+      return data.AuthId;
 
     } catch (e) {
       let err = new Error(e);
