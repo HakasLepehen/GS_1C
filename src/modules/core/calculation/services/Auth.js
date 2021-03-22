@@ -10,17 +10,20 @@ export async function signInInGS(login, password) {
                 password: password
             }
         });
+
+        console.log(resolve.data.Error)
+
         if (resolve.data.Error) {
-            return new Error('Вы неправильно ввели логин или пароль');
-        } else {
-            return new Session(resolve.data.AuthId, resolve.data.User);
+            return resolve.data;
         }
+            return resolve.data
+
     } catch (e) {
         return new Error('Что то пошло не так. Обнови страницу, либо пиши разработчику!')
     }
 }
 
-export function writeErrorToUser(str) {
+export function displayError(str) {
     document.querySelector('.form-body span').innerHTML = str;
     document.querySelector('.form-body-login').value = null;
     document.querySelector('.form-body-password').value = null;
