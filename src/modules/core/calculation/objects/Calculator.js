@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {deleteCookie, getCookie, setCookie} from './../services/cookie';
-import {displayError, signInInGS} from "../services/Auth";
+import {closeAuthWindow, displayError, signInInGS} from "../services/Auth";
 
 export class Calculator {
 
@@ -25,7 +25,7 @@ export class Calculator {
             }, 1000);
         }
 
-        // this.loadAgents();
+        this.loadAgents();
 
     }
 
@@ -34,16 +34,17 @@ export class Calculator {
         let agents;
 
         try {
-            // agents = await this.getAgents();
-        } catch (e) {
-            if (e?.code === 401) {
-                // запрос вернул статус 401 и очистил куки. Перезапускаем init()
-                console.log('Токен не валиден, запрашиваю повторную авторизацию');
+
+            agents = await this.getAgents();
+
+            if (agents instanceof Error) {
                 return this.init();
             }
 
-            // тут ошибка не из-за того, что юзер не авторизован
+        } catch (e) {
+
             return console.error('Unexpected error', e);
+
         }
 
         console.log('Получил агентов', agents);
@@ -54,21 +55,27 @@ export class Calculator {
 
         try {
 
-            const {data: agents} = await axios.get(window.configuration.url + 'agents', {
+            const agents = await axios.get(window.configuration.url + 'agents', {
                 headers: {
                     'X-Auth': this.token
                 }
             });
 
+            console.log('Получилось кривых агентов', agents);
+
             return agents;
 
         } catch (e) {
 
-            if (e.response.status === 401) deleteCookie('X-Auth');
-
-            console.error(e);
-            alert('Не удалось выгрузить данные по клиентам - обратитесь к разработчику')
-
+            // if (e.response.status === 401) {
+            //     deleteCookie('X-Auth');
+            //     throw new Error().code = 401;
+            // }
+            if (e.response.status === 401) {
+                deleteCookie('X-Auth');
+                e.code = 401;
+                throw new Error(e);
+            }
         }
 
     }
@@ -154,17 +161,6 @@ function openAuthWindow() {
     modal.style.display = 'flex';
     modal.style.top = '25vh';
     modal.style.animation = 'fall 0.5s 1';
-}
-
-function closeAuthWindow() {
-    const modal = document.querySelector('.modal');
-
-    modal.style.animation = 'up 0.5s 1';
-
-    setTimeout(() => {
-        modal.style.top = '-100vh';
-        modal.style.display = 'none';
-    }, 400);
 }
 
 

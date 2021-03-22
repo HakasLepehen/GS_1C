@@ -1,3 +1,5 @@
+@import "colors";
+
 @mixin submit-btn($height, $width) {
   -moz-transition: 2s ease; /* Firefox 4 */
   -o-transition: 2s ease; /* Opera */
@@ -32,8 +34,8 @@
   }
 
   &:active {
-    background-color: #cdfccd;
-    border: 1px solid #cdfccd;
+    background-color: $salad;
+    border: 1px solid $salad;
     cursor: pointer;
     outline: none;
     transition: 0.3s;

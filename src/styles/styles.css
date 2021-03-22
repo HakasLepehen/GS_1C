@@ -131,6 +131,7 @@ body {
     z-index: 1; }
   .wrapper .section2 .service-buttons {
     display: flex;
+    position: absolute;
     flex-direction: row;
     justify-content: flex-end;
     width: 100%; }
@@ -198,7 +199,8 @@ body {
       position: sticky; }
       .wrapper .section2 .work-wrapper .client-data-header .client-name {
         margin: auto;
-        width: 80%; }
+        width: 80%;
+        padding-left: 20px; }
       .wrapper .section2 .work-wrapper .client-data-header .numeric-data {
         display: flex;
         flex-direction: row;
@@ -227,6 +229,7 @@ body {
         margin-bottom: 20px;
         margin-top: 10px;
         min-height: 60px;
+        padding-left: 20px;
         width: 100%; }
         .wrapper .section2 .work-wrapper .work-data .client-data:hover {
           background-color: #b8c1ec;
@@ -252,35 +255,27 @@ body {
             border-radius: 15px;
             display: flex;
             flex: 0 0 45%;
-            height: 90%;
+            height: 100%;
             justify-content: center;
-            position: relative;
-            text-align: center;
-            top: -2px; }
+            text-align: center; }
             .wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects:hover, .wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:hover {
-              cursor: pointer; }
+              cursor: pointer;
+              border: 2px solid; }
             .wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects:active, .wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects:focus, .wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:active, .wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:focus {
               outline: none; }
           .wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects {
-            background-color: darkgreen;
-            box-shadow: 0 2px 0 3px #023202;
-            -webkit-box-shadow: 0 2px 0 3px #023202;
-            -moz-box-shadow: 0 2px 0 3px #023202; }
+            background-color: #02a202; }
+            .wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects:hover {
+              border-color: #cdfccd; }
             .wrapper .section2 .work-wrapper .work-data .client-data-buttons .active-objects:active {
-              top: 2px;
-              box-shadow: 0 0 2px 0 #025a02;
-              -webkit-box-shadow: 0 0 2px 0 #025a02;
-              -moz-box-shadow: 0 0 2px 0 #025a02; }
+              background-color: #cdfccd; }
           .wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects {
-            background-color: #ff8c00;
-            box-shadow: 0 2px 0 3px #a96002;
-            -webkit-box-shadow: 0 2px 0 3px #a96002;
-            -moz-box-shadow: 0 2px 0 3px #a96002; }
+            background-color: #ff9b00; }
+            .wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:hover {
+              background-color: #ff9b00;
+              border-color: #FFD500; }
             .wrapper .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:active {
-              top: 2px;
-              box-shadow: 0 0 2px 0 #a96002;
-              -webkit-box-shadow: 0 0 2px 0 #a96002;
-              -moz-box-shadow: 0 0 2px 0 #a96002; }
+              background-color: #FFD500; }
         .wrapper .section2 .work-wrapper .work-data .client-data a {
           letter-spacing: 1px;
           text-shadow: none;
