@@ -1,6 +1,6 @@
 import axios from "axios";
 import {initCalculator} from "../Сalculation";
-import {Cookie} from "../objects/Cookie";
+import {Cookie} from "./cookie";
 
 export async function getAgents(token) {
     const response = await axios.get(window.configuration.url + 'agents', {
