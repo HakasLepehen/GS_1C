@@ -1,11 +1,10 @@
 import {Session} from "./objects/Session";
-import {Cookie} from "./objects/Cookie";
-import {Company} from "./objects/Company";
+// import {Cookie} from "./objects/cookie";
 import {
     closeAuthWindow,
     openAuthWindow,
     signInInGS,
-    writeErrorToUser
+    displayError
 } from "./services/Auth";
 import {getAgents} from "./services/Agent-operations";
 
@@ -20,7 +19,7 @@ export function initCalculator() {
             let password = document.querySelector('.form-body-password').value.trim();
             // 73812639019
             if (!login || !password) {
-                writeErrorToUser('Введите логин или пароль!');
+                displayError('Введите логин или пароль!');
             } else {
                 let session = await signInInGS(login, password);
 
@@ -31,7 +30,7 @@ export function initCalculator() {
                 }
 
                 if (session instanceof Error) {
-                    writeErrorToUser('Вы неправильно ввели логин или пароль');
+                    displayError('Вы неправильно ввели логин или пароль');
                 }
             }
         })
