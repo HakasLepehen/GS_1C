@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {deleteCookie, getCookie, setCookie} from '../services/cookie';
 import {closeAuthWindow, displayError, signInInGS} from "../services/Auth";
+import {Agent} from "./Agent";
+import {getAgentsArray} from "../services/Agent-operations";
 
 export class Calculator {
 
@@ -31,7 +33,7 @@ export class Calculator {
 
     async loadAgents() {
 
-        let agents;
+        let agents, processedAgents;
 
         try {
 
@@ -47,8 +49,11 @@ export class Calculator {
 
         }
 
-        console.log(agents);
-        //ничего
+        agents = agents.data.filter((agent) => agent.agentInfoType === 0)
+
+        processedAgents = getAgentsArray(agents);
+
+        console.log(processedAgents);
 
     }
 

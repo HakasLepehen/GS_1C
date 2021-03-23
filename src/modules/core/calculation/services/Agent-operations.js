@@ -1,19 +1,10 @@
-import axios from "axios";
-import {initCalculator} from "../Сalculation";
-import {Cookie} from "./cookie";
+import {Agent} from "../objects/Agent";
 
-export async function getAgents(token) {
-    const response = await axios.get(window.configuration.url + 'agents', {
-        headers: {
-            'X-Auth': token
-        }
-    });
+export function getAgentsArray(arr) {
+    console.log('Массив на входе для обработки агентов', arr)
 
-    if (response.status === 401) {
-        Cookie.clearCookies();
-    }
-
-    if (response.data) {
-        return response.data
-    }
+    return arr.map(el => {
+        return new Agent(el.id, el.name, el.features[0].active, el.features[0].inactive)
+    }, []);
+    //
 }
