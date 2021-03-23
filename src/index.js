@@ -3,9 +3,9 @@ import './modules/vendors/bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
 import './modules/vendors/GSconfig';
 import {initDealsOnMap} from "./modules/core/dealsOnMap/dealsOnMap";
-import {Calculator} from "./modules/core/calculation/objects/Calculator";
+// import {Calculator} from "./modules/core/calculation/objects/Calculator";
+import {initCalculation} from "./modules/core/calculation/Сalculation";
 
-let app = null;
 // Плавное переключение по навигации
 const a = document.querySelectorAll('a[href*="#"]:not([href="#"])');
 a.forEach((el) => {
@@ -33,8 +33,7 @@ navBar.addEventListener('click', function (e) {
 
     switch (e.target.innerHTML) {
         case 'Калькулятор объектов':
-            app = new Calculator();
-            app.init();
+            initCalculation();
             break;
         case 'Сделки на карте':
             initDealsOnMap();

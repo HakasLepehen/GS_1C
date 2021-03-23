@@ -1,5 +1,4 @@
 import axios from "axios";
-import {Session} from "../objects/Session";
 
 //Метод авторизации в системе мониторинга
 export async function signInInGS(login, password) {
@@ -10,8 +9,6 @@ export async function signInInGS(login, password) {
                 password: password
             }
         });
-
-        console.log(resolve.data.Error)
 
         if (resolve.data.Error) {
             return resolve.data;

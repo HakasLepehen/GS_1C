@@ -11,7 +11,6 @@ export async function getAgents(token) {
 
     if (response.status === 401) {
         Cookie.clearCookies();
-        initCalculator();
     }
 
     if (response.data) {

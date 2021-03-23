@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {deleteCookie, getCookie, setCookie} from './../services/cookie';
+import {deleteCookie, getCookie, setCookie} from '../services/cookie';
 import {closeAuthWindow, displayError, signInInGS} from "../services/Auth";
 
 export class Calculator {
@@ -37,17 +37,18 @@ export class Calculator {
 
             agents = await this.getAgents();
 
-            if (agents instanceof Error) {
-                return this.init();
-            }
-
         } catch (e) {
+
+            if (e.code === 401) {
+                return openAuthWindow()
+            }
 
             return console.error('Unexpected error', e);
 
         }
 
-        console.log('Получил агентов', agents);
+        console.log(agents);
+        //ничего
 
     }
 
@@ -55,68 +56,22 @@ export class Calculator {
 
         try {
 
-            const agents = await axios.get(window.configuration.url + 'agents', {
+            return await axios.get(window.configuration.url + 'agents', {
                 headers: {
                     'X-Auth': this.token
                 }
             });
 
-            console.log('Получилось кривых агентов', agents);
-
-            return agents;
-
         } catch (e) {
 
-            // if (e.response.status === 401) {
-            //     deleteCookie('X-Auth');
-            //     throw new Error().code = 401;
-            // }
             if (e.response.status === 401) {
                 deleteCookie('X-Auth');
                 e.code = 401;
-                throw new Error(e);
+                throw e;
             }
         }
 
     }
-
-    // async signIn(login, password) {
-    //
-    //     try {
-    //
-    //         const {data} = await axios.get(window.configuration.url + 'auth/login', {
-    //             params: {
-    //                 username: login,
-    //                 password: password
-    //             }
-    //         });
-    //
-    //         if (data.Error) {
-    //             let err = new Error(data.Error);
-    //             displayError('Вы неправильно ввели логин или пароль'); // это сообщение для юзера
-    //             throw err;
-    //         }
-    //
-    //         this.user = data.User; // мб пригодится
-    //         this.token = data.AuthId;
-    //
-    //         closeAuthWindow();
-    //
-    //         setCookie('X-Auth', data.AuthId);
-    //
-    //         this.init();
-    //
-    //         return data.AuthId;
-    //
-    //     } catch (e) {
-    //         // let err = new Error(e);
-    //         // err.display = e.display || 'Что то пошло не так. Обнови страницу, либо пиши разработчику!'; // это сообщение для юзера
-    //         // throw err;
-    //
-    //         displayError('Что то пошло не так. Обнови страницу, либо пиши разработчику!');
-    //     }
-    //
-    // }
 
     addHandlers() {
 
@@ -130,8 +85,6 @@ export class Calculator {
             try {
                 let data = await signInInGS(login, password);
 
-                console.log('Хорошие данные', data);
-
                 if (data.Error) {
                     return displayError('Вы неправильно ввели логин или пароль');
                 }
@@ -141,7 +94,7 @@ export class Calculator {
 
                 setCookie('X-Auth', data.AuthId);
                 closeAuthWindow();
-                this.init();
+                await this.init();
 
                 return data.AuthId;
             } catch (e) {
