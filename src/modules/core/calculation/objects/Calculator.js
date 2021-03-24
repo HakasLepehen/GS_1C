@@ -7,15 +7,13 @@ import {getAgentsArray} from "../services/Agent-operations";
 export class Calculator {
 
     get isLogged() {
-        if (getCookie('X-Auth')) return true;
+        return !!getCookie('X-Auth');
 
-        return false;
     }
 
     constructor() {
         this.user = null;
         this.token = getCookie('X-Auth') || null;
-
         this.addHandlers();
     }
 
