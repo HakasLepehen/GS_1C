@@ -115,5 +115,3 @@ function openAuthWindow() {
     modal.style.top = '25vh';
     modal.style.animation = 'fall 0.5s 1';
 }
-
-
