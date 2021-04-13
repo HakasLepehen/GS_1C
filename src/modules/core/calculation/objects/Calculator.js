@@ -27,6 +27,8 @@ export class Calculator {
 
         this.loadAgents();
 
+        const objs = this.getObjects();
+        console.log(objs.data);
     }
 
     async loadAgents() {
@@ -44,7 +46,6 @@ export class Calculator {
             }
 
             return console.error('Unexpected error', e);
-
         }
 
         agents = agents.data.filter((agent) => agent.agentInfoType === 0)
@@ -52,7 +53,6 @@ export class Calculator {
         processedAgents = getAgentsArray(agents);
 
         console.log(processedAgents);
-
     }
 
     async getAgents() {
@@ -73,7 +73,25 @@ export class Calculator {
                 throw e;
             }
         }
+    }
 
+    async getObjects() {
+
+        try {
+
+            return await axios.get(window.configuration.url + 'vehicles', {
+                headers: {
+                    'X-Auth': this.token
+                }
+            })
+        } catch (e) {
+
+            if (e.response.status === 401) {
+                deleteCookie('X-Auth');
+                e.code = 401;
+                throw e;
+            }
+        }
     }
 
     addHandlers() {

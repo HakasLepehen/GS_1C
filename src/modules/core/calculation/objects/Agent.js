@@ -1,10 +1,10 @@
 export class Agent {
 
-    constructor(id, brand, features) {
+    constructor(id, brand, features, activeObjCount, inactiveObjCount) {
         this.id = id;
         this.brand = brand;
         this.features = features;
-        // this._activeCount = activeCount;
-        // this._inactiveCount = inactiveCount;
+        // this.activeObjCount = activeObjCount;
+        // this.inactiveObjCount = inactiveObjCount;
     }
 }

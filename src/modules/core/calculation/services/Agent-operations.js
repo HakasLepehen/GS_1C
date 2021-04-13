@@ -6,5 +6,5 @@ export function getAgentsArray(arr) {
     return arr.map(el => {
         return new Agent(el.id, el.name, el.features[0])
     }, []);
-
 }
+
