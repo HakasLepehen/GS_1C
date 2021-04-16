@@ -1,0 +1,244 @@
+.section2 {
+
+  .modal {
+    align-items: center;
+    background: $backgroundWindow;
+    border-radius: 20px;
+    border: 1px solid #333;
+    color: $mainBackground;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    min-height: 40vh;
+    padding: 10px;
+    position: relative;
+    top: 35vh;
+    transition: margin-top 1s ease-in;
+    width: 30%;
+    z-index: 9999;
+
+    .form-title-wrapper {
+      color: $mainBackground;
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      width: 100%;
+    }
+
+    .form-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 22vh;
+      width: 100%;
+
+      .form-body {
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+
+        &-login, &-password {
+          background-color: $inputBackground;
+          border-radius: 5px;
+          border: none;
+          box-sizing: border-box;
+          display: block;
+          margin: auto auto 10px auto;
+          min-height: 40px;
+          width: 80%;
+        }
+
+        span {
+          color: $error;
+          margin: auto;
+          display: block;
+          font-size: 10px;
+          text-align: center;
+          text-shadow: none;
+
+          &:hover {
+            cursor: default;
+          }
+        }
+      }
+
+      .btn-submit {
+        @include submit-btn(40px, 80%);
+      }
+    }
+  }
+
+  h1 {
+    position: absolute;
+    margin: 0;
+    z-index: 1;
+  }
+
+  .service-buttons {
+    display: flex;
+    position: absolute;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+
+    .save-doc, .print {
+      @include submit-btn(50px, 100px);
+      display: flex;
+      justify-content: flex-end;
+      margin: 0;
+      z-index: 1;
+    }
+
+    .save-doc {
+      background: center / contain no-repeat url("../media/cloud-arrow-down.svg");
+      margin-right: 5px;
+    }
+
+    .print {
+      background: center / contain no-repeat url("../media/printer.svg");
+    }
+  }
+
+  .work-wrapper {
+    height: calc(100vh - 2px);
+    left: 434px;
+    margin: auto 0 auto auto;
+    overflow: hidden;
+    padding-top: 90px;
+    position: absolute;
+    width: calc(100% - 434px);
+    z-index: 0;
+
+    .client-data-header {
+      display: flex;
+      font-size: 25px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      padding: 0 40px 0 20px;
+      position: sticky;
+
+      .client-name {
+        margin: auto;
+        width: 80%;
+        padding-left: 20px;
+      }
+
+      .numeric-data {
+        display: flex;
+        flex-direction: row;
+        font-size: 18px;
+        width: 20%;
+
+        .active-objects-header, .inactive-objects-header {
+          display: flex;
+          flex: 0 0 50%;
+          font-size: 14px;
+          margin: auto;
+          text-align: center;
+        }
+      }
+    }
+
+    .work-data {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      max-height: 95%;
+      overflow-y: scroll;
+      padding: 0 20px;
+
+      .client-data {
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        font-size: 18px;
+        font-weight: 900;
+        justify-content: space-evenly;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        min-height: 60px;
+        padding-left: 20px;
+        width: 100%;
+
+        &:hover {
+          background-color: $backgroundWindow;
+          color: $mainBackground;
+          transition: background-color 0.8s ease-in-out;
+        }
+
+        .client-data-label {
+          align-items: flex-start;
+          display: flex;
+          justify-content: flex-start;
+          min-width: 80%;
+          //padding-left: 20px;
+
+          a {
+            margin: auto auto auto 0;
+            text-align: left;
+          }
+        }
+
+        &-buttons {
+          display: flex;
+          flex-direction: row;
+          flex: 0 0 auto;
+          justify-content: space-around;
+          min-width: 200px;
+          width: 20%;
+
+          .active-objects, .inactive-objects {
+            align-items: center;
+            border-radius: 15px;
+            display: flex;
+            flex: 0 0 45%;
+            height: 100%;
+            justify-content: center;
+            text-align: center;
+
+            &:hover {
+              cursor: pointer;
+              border: 2px solid;
+            }
+
+            &:active, &:focus {
+              outline: none;
+            }
+          }
+
+          .active-objects {
+            background-color: $active;
+
+            &:hover {
+              border-color: $salad;
+            }
+
+            &:active {
+              background-color: $salad;
+            }
+          }
+
+          .inactive-objects {
+            background-color: $inactive;
+
+            &:hover {
+              background-color: $inactive;
+              border-color: $inactive2;
+            }
+
+            &:active {
+              background-color: $inactive2;
+            }
+          }
+        }
+
+        a {
+          letter-spacing: 1px;
+          text-shadow: none;
+          text-decoration: none;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
