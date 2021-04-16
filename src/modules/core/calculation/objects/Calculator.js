@@ -122,17 +122,8 @@ export class Calculator {
                 displayError('Что то пошло не так. Обнови страницу, либо пиши разработчику!');
                 console.error(e.message);
             }
-
         });
 
     }
 
 }
-
-// function openAuthWindow() {
-//     const modal = document.querySelector('.modal');
-//
-//     modal.style.display = 'flex';
-//     modal.style.top = '25vh';
-//     modal.style.animation = 'fall 0.5s 1';
-// }

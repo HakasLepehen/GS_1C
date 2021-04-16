@@ -91,12 +91,12 @@
     }
 
     .save-doc {
-      background: center / contain no-repeat url("../media/cloud-arrow-down.svg");
+      background: center / contain no-repeat url("../media/cloud-arrow-down.svg"); // это не ошибка
       margin-right: 5px;
     }
 
     .print {
-      background: center / contain no-repeat url("../media/printer.svg");
+      background: center / contain no-repeat url("../media/printer.svg"); // это не ошибка
     }
   }
 
