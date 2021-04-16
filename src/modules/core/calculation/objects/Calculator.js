@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {deleteCookie, getCookie, setCookie} from '../services/cookie';
-import {closeAuthWindow, displayError, signInInGS} from "../services/Auth";
+import {closeAuthWindow, displayError, openAuthWindow, signInInGS} from "../services/Auth";
 import {Agent} from "./Agent";
 import {getAgentsArray} from "../services/Agent-operations";
 
