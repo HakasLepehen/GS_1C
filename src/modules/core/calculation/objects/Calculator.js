@@ -129,10 +129,10 @@ export class Calculator {
 
 }
 
-function openAuthWindow() {
-    const modal = document.querySelector('.modal');
-
-    modal.style.display = 'flex';
-    modal.style.top = '25vh';
-    modal.style.animation = 'fall 0.5s 1';
-}
+// function openAuthWindow() {
+//     const modal = document.querySelector('.modal');
+//
+//     modal.style.display = 'flex';
+//     modal.style.top = '25vh';
+//     modal.style.animation = 'fall 0.5s 1';
+// }
