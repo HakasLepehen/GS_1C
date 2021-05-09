@@ -1,7 +1,10 @@
 {
-"version": 3,
-"mappings": "",
-"sources": [],
-"names": [],
-"file": "ui-mixins.css"
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "ui-mixins.scss",
+        "colors.scss"
+    ],
+    "names": [],
+    "file": "ui-mixins.css"
 }

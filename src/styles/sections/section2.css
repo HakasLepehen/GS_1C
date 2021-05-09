@@ -1,17 +1,245 @@
-/* Error: Undefined variable.
- *   ,
- * 5 |     background: $backgroundWindow;
- *   |                 ^^^^^^^^^^^^^^^^^
- *   '
- *   section2.scss 5:17  root stylesheet */
+.section2 .modal {
+  align-items: center;
+  background: #b8c1ec;
+  border-radius: 20px;
+  border: 1px solid #333;
+  color: #232946;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  min-height: 40vh;
+  padding: 10px;
+  position: relative;
+  top: 35vh;
+  transition: margin-top 1s ease-in;
+  width: 30%;
+  z-index: 9999; }
+  .section2 .modal .form-title-wrapper {
+    color: #232946;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    width: 100%; }
+  .section2 .modal .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 22vh;
+    width: 100%; }
+    .section2 .modal .form-wrapper .form-body {
+      align-content: center;
+      display: flex;
+      flex-direction: column; }
+      .section2 .modal .form-wrapper .form-body-login, .section2 .modal .form-wrapper .form-body-password {
+        background-color: #fffffe;
+        border-radius: 5px;
+        border: none;
+        box-sizing: border-box;
+        display: block;
+        margin: auto auto 10px auto;
+        min-height: 40px;
+        width: 80%; }
+      .section2 .modal .form-wrapper .form-body span {
+        color: crimson;
+        margin: auto;
+        display: block;
+        font-size: 10px;
+        text-align: center;
+        text-shadow: none; }
+        .section2 .modal .form-wrapper .form-body span:hover {
+          cursor: default; }
+    .section2 .modal .form-wrapper .btn-submit {
+      -moz-transition: 2s ease;
+      /* Firefox 4 */
+      -o-transition: 2s ease;
+      /* Opera */
+      -webkit-transition: 2s ease;
+      /* Safari and Chrome */
+      background-color: #cdfccd;
+      border-radius: 5px;
+      border: none;
+      box-sizing: border-box;
+      display: block;
+      font-size: 14px;
+      height: 40px;
+      letter-spacing: 1px;
+      line-height: 20px;
+      margin: auto auto 10px auto;
+      text-transform: uppercase;
+      transition: 0.8s;
+      width: 80%; }
+      .section2 .modal .form-wrapper .btn-submit:hover {
+        background-color: #eebbc3;
+        border: 1px solid #E79DAB;
+        cursor: pointer;
+        transition: 0.1s; }
+      .section2 .modal .form-wrapper .btn-submit:focus {
+        background-color: #eebbc3;
+        border: 1px solid #E79DAB;
+        cursor: pointer;
+        outline: none;
+        transition: 0.3s; }
+      .section2 .modal .form-wrapper .btn-submit:active {
+        background-color: #cdfccd;
+        border: 1px solid #cdfccd;
+        cursor: pointer;
+        outline: none;
+        transition: 0.3s; }
+.section2 h1 {
+  position: absolute;
+  margin: 0;
+  z-index: 1; }
+.section2 .service-buttons {
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%; }
+  .section2 .service-buttons .save-doc, .section2 .service-buttons .print {
+    -moz-transition: 2s ease;
+    /* Firefox 4 */
+    -o-transition: 2s ease;
+    /* Opera */
+    -webkit-transition: 2s ease;
+    /* Safari and Chrome */
+    background-color: #cdfccd;
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
+    display: block;
+    font-size: 14px;
+    height: 50px;
+    letter-spacing: 1px;
+    line-height: 20px;
+    margin: auto auto 10px auto;
+    text-transform: uppercase;
+    transition: 0.8s;
+    width: 100px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    z-index: 1; }
+    .section2 .service-buttons .save-doc:hover, .section2 .service-buttons .print:hover {
+      background-color: #eebbc3;
+      border: 1px solid #E79DAB;
+      cursor: pointer;
+      transition: 0.1s; }
+    .section2 .service-buttons .save-doc:focus, .section2 .service-buttons .print:focus {
+      background-color: #eebbc3;
+      border: 1px solid #E79DAB;
+      cursor: pointer;
+      outline: none;
+      transition: 0.3s; }
+    .section2 .service-buttons .save-doc:active, .section2 .service-buttons .print:active {
+      background-color: #cdfccd;
+      border: 1px solid #cdfccd;
+      cursor: pointer;
+      outline: none;
+      transition: 0.3s; }
+  .section2 .service-buttons .save-doc {
+    background: center/contain no-repeat url("../media/cloud-arrow-down.svg");
+    margin-right: 5px; }
+  .section2 .service-buttons .print {
+    background: center/contain no-repeat url("../media/printer.svg"); }
+.section2 .work-wrapper {
+  height: calc(100vh - 2px);
+  left: 434px;
+  margin: auto 0 auto auto;
+  overflow: hidden;
+  padding-top: 90px;
+  position: absolute;
+  width: calc(100% - 434px);
+  z-index: 0; }
+  .section2 .work-wrapper .client-data-header {
+    display: flex;
+    font-size: 25px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    padding: 0 40px 0 20px;
+    position: sticky; }
+    .section2 .work-wrapper .client-data-header .client-name {
+      margin: auto;
+      width: 80%;
+      padding-left: 20px; }
+    .section2 .work-wrapper .client-data-header .numeric-data {
+      display: flex;
+      flex-direction: row;
+      font-size: 18px;
+      width: 20%; }
+      .section2 .work-wrapper .client-data-header .numeric-data .active-objects-header, .section2 .work-wrapper .client-data-header .numeric-data .inactive-objects-header {
+        display: flex;
+        flex: 0 0 50%;
+        font-size: 14px;
+        margin: auto;
+        text-align: center; }
+  .section2 .work-wrapper .work-data {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    max-height: 95%;
+    overflow-y: scroll;
+    padding: 0 20px; }
+    .section2 .work-wrapper .work-data .client-data {
+      border-radius: 5px;
+      display: flex;
+      flex-direction: row;
+      font-size: 18px;
+      font-weight: 900;
+      justify-content: space-evenly;
+      margin-bottom: 20px;
+      margin-top: 10px;
+      min-height: 60px;
+      padding-left: 20px;
+      width: 100%; }
+      .section2 .work-wrapper .work-data .client-data:hover {
+        background-color: #b8c1ec;
+        color: #232946;
+        transition: background-color 0.8s ease-in-out; }
+      .section2 .work-wrapper .work-data .client-data .client-data-label {
+        align-items: flex-start;
+        display: flex;
+        justify-content: flex-start;
+        min-width: 80%; }
+        .section2 .work-wrapper .work-data .client-data .client-data-label a {
+          margin: auto auto auto 0;
+          text-align: left; }
+      .section2 .work-wrapper .work-data .client-data-buttons {
+        display: flex;
+        flex-direction: row;
+        flex: 0 0 auto;
+        justify-content: space-around;
+        min-width: 200px;
+        width: 20%; }
+        .section2 .work-wrapper .work-data .client-data-buttons .active-objects, .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects {
+          align-items: center;
+          border-radius: 15px;
+          display: flex;
+          flex: 0 0 45%;
+          height: 100%;
+          justify-content: center;
+          text-align: center; }
+          .section2 .work-wrapper .work-data .client-data-buttons .active-objects:hover, .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:hover {
+            cursor: pointer;
+            border: 2px solid; }
+          .section2 .work-wrapper .work-data .client-data-buttons .active-objects:active, .section2 .work-wrapper .work-data .client-data-buttons .active-objects:focus, .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:active, .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:focus {
+            outline: none; }
+        .section2 .work-wrapper .work-data .client-data-buttons .active-objects {
+          background-color: #02a202; }
+          .section2 .work-wrapper .work-data .client-data-buttons .active-objects:hover {
+            border-color: #cdfccd; }
+          .section2 .work-wrapper .work-data .client-data-buttons .active-objects:active {
+            background-color: #cdfccd; }
+        .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects {
+          background-color: #ff9b00; }
+          .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:hover {
+            background-color: #ff9b00;
+            border-color: #FFD500; }
+          .section2 .work-wrapper .work-data .client-data-buttons .inactive-objects:active {
+            background-color: #FFD500; }
+      .section2 .work-wrapper .work-data .client-data a {
+        letter-spacing: 1px;
+        text-shadow: none;
+        text-decoration: none;
+        opacity: 1; }
 
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Undefined variable.\a   \2577 \a 5 \2502      background: $backgroundWindow;\d\a   \2502                  ^^^^^^^^^^^^^^^^^\a   \2575 \a   section2.scss 5:17  root stylesheet";
-}
+/*# sourceMappingURL=section2.css.map */
