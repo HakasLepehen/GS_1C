@@ -7,7 +7,7 @@ import {
   signInInGS,
 } from "../services/Auth";
 import { Agent } from "./Agent";
-import { getAgentsArray } from "../services/Agent-operations";
+import { getAgentsArray, sortVehicles } from "../services/Agent-operations";
 import { Vehicle } from "./Vehicle";
 
 export class Calculator {
@@ -101,6 +101,8 @@ export class Calculator {
     let clients = await this.loadAgents();
 
     let vehicles = await this.loadVehicles();
+
+    await sortVehicles(clients, vehicles);
 
     console.log('lData', clients);
     console.log('lData2', vehicles);

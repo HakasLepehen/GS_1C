@@ -5,5 +5,6 @@ export class Agent {
         this.brand = brand;
         this.activeObjCount = activeObjCount;
         this.inactiveObjCount = inactiveObjCount;
+        this.vehicles = [];
     }
 }
