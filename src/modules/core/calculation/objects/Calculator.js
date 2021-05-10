@@ -7,7 +7,7 @@ import {
   signInInGS,
 } from "../services/Auth";
 import { Agent } from "./Agent";
-import { getAgentsArray, sortVehicles } from "../services/Agent-operations";
+import { getAgentsArray, sortVehicles } from "../services/Object-operations";
 import { Vehicle } from "./Vehicle";
 
 export class Calculator {
@@ -46,7 +46,7 @@ export class Calculator {
 
     agents = agents.data.filter((agent) => agent.agentInfoType === 0);
 
-    return processedAgents = getAgentsArray(agents);
+    return (processedAgents = getAgentsArray(agents));
   }
 
   async getAgents() {
@@ -65,29 +65,13 @@ export class Calculator {
     }
   }
 
-  async loadVehicles() {
-    let vehicles, processedVehicles;
-    try {
-        vehicles = await this.getObjects();
-    } catch (error) {
-        if (error.code === 401) return openAuthWindow();
-    }
-
-    vehicles = Array.from(vehicles.data);
-
-    return processedVehicles = vehicles.map((el) => {
-      return new Vehicle(el.vehicleId, el.number.trim(), el.owner.trim(), el.info.status, el.info.statusChangeDate);
-    });
-  }
-
   async getObjects() {
-    
     try {
-        return await axios.get(window.configuration.url + "vehicles", {
-            headers: {
-            "X-Auth": this.token,
-            },
-        });
+      return await axios.get(window.configuration.url + "vehicles", {
+        headers: {
+          "X-Auth": this.token,
+        },
+      });
     } catch (e) {
       if (e.response.status === 401) {
         deleteCookie("X-Auth");
@@ -102,10 +86,31 @@ export class Calculator {
 
     let vehicles = await this.loadVehicles();
 
-    await sortVehicles(clients, vehicles);
+    clients = await sortVehicles(clients, vehicles);
 
-    console.log('lData', clients);
-    console.log('lData2', vehicles);
+    console.log("lData", clients);
+    console.log("lData2", vehicles);
+  }
+
+  async loadVehicles() {
+    let vehicles, processedVehicles;
+    try {
+      vehicles = await this.getObjects();
+    } catch (error) {
+      if (error.code === 401) return openAuthWindow();
+    }
+
+    vehicles = Array.from(vehicles.data);
+
+    return (processedVehicles = vehicles.map((el) => {
+      return new Vehicle(
+        el.vehicleId,
+        el.number.trim(),
+        el.owner.trim(),
+        el.info.status,
+        el.info.statusChangeDate
+      );
+    }));
   }
 
   addHandlers() {
