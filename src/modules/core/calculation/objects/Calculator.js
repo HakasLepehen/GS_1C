@@ -21,15 +21,21 @@ export class Calculator {
     this.addHandlers();
   }
 
-  init() {
+  async init() {
     if (!this.isLogged) {
       setTimeout(() => {
         return openAuthWindow();
       }, 1000);
     }
 
-    this.loadData();
+    let agents = await this.loadData();
+    agents.forEach((agent) => {
+      agent.sort();
+      console.log(agent);
+    });
   }
+
+  calculateData() {}
 
   async loadAgents() {
     let agents, processedAgents;
@@ -86,10 +92,7 @@ export class Calculator {
 
     let vehicles = await this.loadVehicles();
 
-    clients = await sortVehicles(clients, vehicles);
-
-    console.log("lData", clients);
-    console.log("lData2", vehicles);
+    return (clients = sortVehicles(clients, vehicles));
   }
 
   async loadVehicles() {

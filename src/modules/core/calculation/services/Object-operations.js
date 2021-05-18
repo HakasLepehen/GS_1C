@@ -8,8 +8,9 @@ export function getAgentsArray(arr) {
   }, []);
 }
 
-export async function sortVehicles(clientsArr, vehiclesArr) {
-  const clientsV = vehiclesArr.reduce((total, cur) => {
+//необходимо дописать проверку на отсутствие автомобилей у клиента;
+export function sortVehicles(clientsArr, vehiclesArr) {
+  const clientsV = vehiclesArr.reduce((total, cur) => { //получаем объект с ключами из id клиентов и массивами автомобилей в виде значений
     if (!total[cur.owner]) total[cur.owner] = [];
     total[cur.owner].push(cur);
     return total;
