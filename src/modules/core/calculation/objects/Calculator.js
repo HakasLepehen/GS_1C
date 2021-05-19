@@ -6,7 +6,6 @@ import {
   openAuthWindow,
   signInInGS,
 } from "../services/Auth";
-import { Agent } from "./Agent";
 import { getAgentsArray, sortVehicles } from "../services/Object-operations";
 import { Vehicle } from "./Vehicle";
 
@@ -30,8 +29,8 @@ export class Calculator {
 
     let agents = await this.loadData();
     agents.forEach((agent) => {
-      agent.sort();
-      console.log(agent);
+      agent.countVehicles();
+      console.log('Получили клиента перед рендером', agent);
     });
   }
 
@@ -111,7 +110,8 @@ export class Calculator {
         el.number.trim(),
         el.owner.trim(),
         el.info.status,
-        el.info.statusChangeDate
+        el.info.statusChangeDate,
+        el.created
       );
     }));
   }

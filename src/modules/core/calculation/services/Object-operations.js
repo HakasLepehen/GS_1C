@@ -10,9 +10,9 @@ export function getAgentsArray(arr) {
 
 //необходимо дописать проверку на отсутствие автомобилей у клиента;
 export function sortVehicles(clientsArr, vehiclesArr) {
-  const clientsV = vehiclesArr.reduce((total, cur) => { //получаем объект с ключами из id клиентов и массивами автомобилей в виде значений
-    if (!total[cur.owner]) total[cur.owner] = [];
-    total[cur.owner].push(cur);
+  const clientsV = vehiclesArr.reduce((total, cur) => { //получаем объект с ключами из id клиентов и массивами автомобилей в виде значений,  
+    if (!total[cur.owner]) total[cur.owner] = []; 
+    total[cur.owner].push(cur); // cur === undefined, если автомобилей у клиента нет.
     return total;
   }, {});
 

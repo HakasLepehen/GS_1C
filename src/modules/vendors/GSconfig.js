@@ -2,8 +2,8 @@ window.configuration = {}
 
 window.configuration.url = 'https://hosting.glonasssoft.ru/api/';
 
-var today = new Date();
-console.log(today);
+window.configuration.today = new Date();
+console.log('Сегодня: ', window.configuration.today);
 
 /* let a = new Date();
 let b = new Date(a.getFullYear(), a.getMonth());
