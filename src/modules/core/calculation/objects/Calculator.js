@@ -25,7 +25,13 @@ export class Calculator {
       setTimeout(() => {
         return openAuthWindow();
       }, 1000);
+      return;
     }
+
+    let wrapper = document.querySelector(".work-data");
+
+    wrapper.innerHTML = null;
+
 
     let agents = await this.loadData();
     agents.forEach((agent) => {
