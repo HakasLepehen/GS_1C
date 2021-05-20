@@ -1,7 +1,8 @@
 export class Agent {
-  constructor(id, brand, activeObjCount = 0, inactiveObjCount = 0) {
+  constructor(id, brand, platform, activeObjCount = 0, inactiveObjCount = 0) {
     this.id = id;
     this.brand = brand;
+    this.platform = platform;
     this.activeObjCount = activeObjCount;
     this.inactiveObjCount = inactiveObjCount;
     this.vehicles = [];

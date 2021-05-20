@@ -70,7 +70,7 @@ export class Calculator {
     }
   }
 
-  async getObjects() {
+  async getVehicles() {
     try {
       return await axios.get(window.configuration.url + "vehicles", {
         headers: {
@@ -97,7 +97,7 @@ export class Calculator {
   async loadVehicles() {
     let vehicles, processedVehicles;
     try {
-      vehicles = await this.getObjects();
+      vehicles = await this.getVehicles();
     } catch (error) {
       if (error.code === 401) return openAuthWindow();
     }
