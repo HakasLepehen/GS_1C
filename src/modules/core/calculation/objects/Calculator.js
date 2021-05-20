@@ -31,10 +31,9 @@ export class Calculator {
     agents.forEach((agent) => {
       agent.countVehicles();
       console.log('Получили клиента перед рендером', agent);
+      agent.render()
     });
   }
-
-  calculateData() {}
 
   async loadAgents() {
     let agents, processedAgents;
@@ -121,9 +120,7 @@ export class Calculator {
       .querySelector(".btn-submit")
       .addEventListener("click", async () => {
         const login = document.querySelector(".form-body-login").value.trim();
-        const password = document
-          .querySelector(".form-body-password")
-          .value.trim();
+        const password = document.querySelector(".form-body-password").value.trim();
 
         if (!login || !password) return displayError("Введите логин и пароль!");
 

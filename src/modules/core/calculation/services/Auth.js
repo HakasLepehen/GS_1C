@@ -14,7 +14,6 @@ export async function signInInGS(login, password) {
             return response.data;
         }
             return response.data
-
     } catch (e) {
         return new Error('Что то пошло не так. Обнови страницу, либо пиши разработчику!')
     }
