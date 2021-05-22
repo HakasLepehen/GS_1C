@@ -152,5 +152,10 @@ export class Calculator {
           console.error(e.message);
         }
       });
+      document
+      .querySelector(".refresh")
+      .addEventListener("click", function(e) {
+        console.log(e.target)
+      })
   }
 }

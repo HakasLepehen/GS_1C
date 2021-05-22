@@ -82,12 +82,17 @@
     justify-content: flex-end;
     width: 100%;
 
-    .save-doc, .print {
+    .refresh, .save-doc, .print {
       @include submit-btn(50px, 100px);
       display: flex;
       justify-content: flex-end;
       margin: 0;
       z-index: 1;
+    }
+
+    .refresh {
+      background: center / contain no-repeat url("../media/refresh.svg");
+      margin-right: 5px;
     }
 
     .save-doc {
