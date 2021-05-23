@@ -40,3 +40,9 @@ navBar.addEventListener('click', function (e) {
             break;
     }
 })
+
+document
+      .querySelector(".refresh")
+      .addEventListener("click", function(e) {
+        initCalculation();
+      })
