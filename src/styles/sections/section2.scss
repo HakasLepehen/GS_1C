@@ -256,7 +256,7 @@
       .vehicle-info {
         background-color: $inputBackground;
         color: $mainBackground;
-        display: flex;
+        display: none;
         font-size: 1rem;
         height: 100%;
         min-width: 200px;
@@ -264,7 +264,9 @@
         right: 0;
 
         .info-title {
+          color: $highlight;
           display: inline-block;
+          font-weight: 1000;
           text-orientation: upright;
           writing-mode: vertical-lr;
         }
@@ -280,6 +282,7 @@
 
           .list-label {
             margin: 0 auto;
+            text-transform: uppercase;
           }
 
           ol {
