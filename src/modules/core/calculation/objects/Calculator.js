@@ -25,16 +25,21 @@ export class Calculator {
       setTimeout(() => {
         return openAuthWindow();
       }, 1000);
+      return;
     }
+
+    let wrapper = document.querySelector(".work-data");
+
+    wrapper.innerHTML = null;
+
 
     let agents = await this.loadData();
     agents.forEach((agent) => {
       agent.countVehicles();
       console.log('Получили клиента перед рендером', agent);
+      agent.render()
     });
   }
-
-  calculateData() {}
 
   async loadAgents() {
     let agents, processedAgents;
@@ -70,7 +75,7 @@ export class Calculator {
     }
   }
 
-  async getObjects() {
+  async getVehicles() {
     try {
       return await axios.get(window.configuration.url + "vehicles", {
         headers: {
@@ -97,7 +102,7 @@ export class Calculator {
   async loadVehicles() {
     let vehicles, processedVehicles;
     try {
-      vehicles = await this.getObjects();
+      vehicles = await this.getVehicles();
     } catch (error) {
       if (error.code === 401) return openAuthWindow();
     }
@@ -121,9 +126,7 @@ export class Calculator {
       .querySelector(".btn-submit")
       .addEventListener("click", async () => {
         const login = document.querySelector(".form-body-login").value.trim();
-        const password = document
-          .querySelector(".form-body-password")
-          .value.trim();
+        const password = document.querySelector(".form-body-password").value.trim();
 
         if (!login || !password) return displayError("Введите логин и пароль!");
 
