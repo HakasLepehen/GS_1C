@@ -10,9 +10,7 @@ export class Agent {
   countVehicles() {
     if (!this.vehicles) return;
 
-    // console.log("Обрабатываемый клиент", this);
     this.vehicles.forEach((vehicle) => {
-      // console.log(vehicle);
       vehicle.checkStatus();
       vehicle.status === 13 ? this.inactiveObjCount++ : this.activeObjCount++;
     });
@@ -23,6 +21,7 @@ export class Agent {
     let div = document.createElement("div");
 
     div.className = "client-data";
+    div.id = this.id;
     div.innerHTML = ` <div class="client-data-label">
                         <a>${this.brand}</a>
                       </div>

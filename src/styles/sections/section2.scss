@@ -1,6 +1,6 @@
 @import "../ui-mixins";
+@import "../colors";
 .section2 {
-
   .modal {
     align-items: center;
     background: $backgroundWindow;
@@ -38,7 +38,8 @@
         display: flex;
         flex-direction: column;
 
-        &-login, &-password {
+        &-login,
+        &-password {
           background-color: $inputBackground;
           border-radius: 5px;
           border: none;
@@ -82,7 +83,9 @@
     justify-content: flex-end;
     width: 100%;
 
-    .save-doc, .print {
+    .refresh,
+    .save-doc,
+    .print {
       @include submit-btn(50px, 100px);
       display: flex;
       justify-content: flex-end;
@@ -90,8 +93,14 @@
       z-index: 1;
     }
 
+    .refresh {
+      background: center / contain no-repeat url("../media/refresh.svg");
+      margin-right: 5px;
+    }
+
     .save-doc {
-      background: center / contain no-repeat url("../media/cloud-arrow-down.svg"); // это не ошибка
+      background: center / contain no-repeat
+        url("../media/cloud-arrow-down.svg"); // это не ошибка
       margin-right: 5px;
     }
 
@@ -130,7 +139,8 @@
         font-size: 18px;
         width: 20%;
 
-        .active-objects-header, .inactive-objects-header {
+        .active-objects-header,
+        .inactive-objects-header {
           display: flex;
           flex: 0 0 50%;
           font-size: 14px;
@@ -188,7 +198,8 @@
           min-width: 200px;
           width: 20%;
 
-          .active-objects, .inactive-objects {
+          .active-objects,
+          .inactive-objects {
             align-items: center;
             border-radius: 15px;
             display: flex;
@@ -202,7 +213,8 @@
               border: 2px solid;
             }
 
-            &:active, &:focus {
+            &:active,
+            &:focus {
               outline: none;
             }
           }
@@ -238,6 +250,52 @@
           text-shadow: none;
           text-decoration: none;
           opacity: 1;
+        }
+      }
+
+      .vehicle-info {
+        background-color: $inputBackground;
+        color: $mainBackground;
+        display: none;
+        font-size: 1rem;
+        height: 100%;
+        min-width: 200px;
+        position: absolute;
+        right: 0;
+
+        .info-title {
+          color: $highlight;
+          display: inline-block;
+          font-weight: 1000;
+          text-orientation: upright;
+          writing-mode: vertical-lr;
+        }
+
+        .list-wrapper {
+          border: 1px solid $mainBackground;
+          border-top: none;
+          border-right: none;
+          display: flex;
+          flex-direction: column;
+          flex-direction: flex-start;
+          width: 100%;
+
+          .list-label {
+            margin: 0 auto;
+            text-transform: uppercase;
+          }
+
+          ol {
+            font-size: 1rem;
+            line-height: 1.2rem;
+          }
+        }
+
+        a {
+          background: center / contain no-repeat url("../media/close_icon.svg");
+          cursor: pointer;
+          height: 1.2rem;
+          width: 1.2rem;
         }
       }
     }

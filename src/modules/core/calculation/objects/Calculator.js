@@ -39,6 +39,8 @@ export class Calculator {
       console.log('Получили клиента перед рендером', agent);
       agent.render()
     });
+
+    this.renderDetails(agents);
   }
 
   async loadAgents() {
@@ -119,6 +121,18 @@ export class Calculator {
         el.created
       );
     }));
+  }
+
+  renderDetails(arr) {
+    document.addEventListener("click", (e) => {
+      if (e.target.parentNode.className === 'client-data-buttons') {
+          const dataBtns = e.target.parentNode;
+          const clientData = dataBtns.parentNode;
+          const agent = arr.find(el => el.id === clientData.id)
+          console.log(agent);
+      }
+      // console.log(e.target.parentNode.className === 'client-data-buttons');
+  })
   }
 
   addHandlers() {
