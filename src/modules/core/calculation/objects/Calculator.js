@@ -32,12 +32,10 @@ export class Calculator {
 
     wrapper.innerHTML = null;
 
-
     let agents = await this.loadData();
     agents.forEach((agent) => {
       agent.countVehicles();
-      console.log('Получили клиента перед рендером', agent);
-      agent.render()
+      agent.render();
     });
 
     this.renderDetails(agents);
@@ -125,14 +123,68 @@ export class Calculator {
 
   renderDetails(arr) {
     document.addEventListener("click", (e) => {
-      if (e.target.parentNode.className === 'client-data-buttons') {
-          const dataBtns = e.target.parentNode;
-          const clientData = dataBtns.parentNode;
-          const agent = arr.find(el => el.id === clientData.id)
-          console.log(agent);
+      let vehiclesForRender;
+
+      let divElement = document.createElement("div");
+
+      let workData = document.querySelector(".work-data");
+      divElement.setAttribute("class", "vehicle-info");
+      workData.appendChild(divElement);
+
+      let vehicleInfo = document.querySelector(".vehicle-info");
+
+      // vehicleInfo.getElementsByClassName.display = 'none';
+      vehicleInfo.appendChild(document.createElement("div")).className =
+        "info-title";
+      vehicleInfo.appendChild(document.createElement("div")).className =
+        "list-wrapper";
+      vehicleInfo.appendChild(document.createElement("a")).className =
+        "vehicle-info-close";
+      vehicleInfo
+        .querySelector(".vehicle-info-close")
+        .setAttribute("role", "button");
+
+      let listWrapper = document.querySelector(".list-wrapper");
+      listWrapper.appendChild(document.createElement("div")).className =
+        "list-label";
+      listWrapper.appendChild(document.createElement("ol")).className =
+        "vehicle-list";
+
+      let listLabel = document.querySelector(".list-label");
+      let vehicleList = document.querySelector(".vehicle-list");
+
+      vehicleInfo.style.display == "none"
+        ? (vehicleInfo.style.display = "flex")
+        : (vehicleInfo.style.display = "none");
+
+      if (e.target.parentNode.className === "client-data-buttons") {
+        const dataBtns = e.target.parentNode;
+        const clientData = dataBtns.parentNode;
+        const agent = arr.find((el) => el.id === clientData.id);
+        console.log(agent);
+
+        vehiclesForRender = function () {
+          document.querySelector(".info-title").innerText = agent.brand;
+
+          if (e.target.className === "active-objects") {
+            listLabel.innerText = "Активные";
+            return agent.vehicles.filter((el) => el.status === 1);
+          }
+          if (e.target.className === "inactive-objects") {
+            listLabel.innerText = "Приостановленные";
+            return agent.vehicles.filter((el) => el.status === 13);
+          }
+        };
+
+        vehiclesForRender().forEach((el) => {
+          const newLi = document.createElement("li");
+          vehicleList.appendChild(newLi).innerText = el.objName;
+        });
+
+        console.log(vehiclesForRender());
       }
-      // console.log(e.target.parentNode.className === 'client-data-buttons');
-  })
+      console.log(e.target.parentNode.className === "client-data-buttons");
+    });
   }
 
   addHandlers() {
@@ -140,7 +192,9 @@ export class Calculator {
       .querySelector(".btn-submit")
       .addEventListener("click", async () => {
         const login = document.querySelector(".form-body-login").value.trim();
-        const password = document.querySelector(".form-body-password").value.trim();
+        const password = document
+          .querySelector(".form-body-password")
+          .value.trim();
 
         if (!login || !password) return displayError("Введите логин и пароль!");
 
