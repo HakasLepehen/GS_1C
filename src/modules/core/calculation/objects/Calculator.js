@@ -122,40 +122,52 @@ export class Calculator {
   }
 
   renderDetails(arr) {
-    document.addEventListener("click", (e) => {
+    const workData = document.querySelector(".work-data");
+
+    workData.addEventListener("click", (e) => {
       let vehiclesForRender;
 
-      let divElement = document.createElement("div");
+      const createElement = (_class, tag = "div") => {
+        const el = document.createElement(tag);
+        el.className = _class;
 
-      let workData = document.querySelector(".work-data");
-      divElement.setAttribute("class", "vehicle-info");
-      workData.appendChild(divElement);
+        return el;
+      };
+      
+      const vehicleInfo = createElement('vehicle-info');
+      const infoTitle = createElement('info-title');
+      const listWrapper = createElement('list-wrapper');
+      const listLabel = createElement('list-label');
+      const ol = createElement('ol', 'vehicle-list');
+      workData.appendChild(vehicleInfo);
+      
+      console.log(vehicleInfo);
 
-      let vehicleInfo = document.querySelector(".vehicle-info");
+      // let vehicleInfo = document.querySelector(".vehicle-info");
 
       // vehicleInfo.getElementsByClassName.display = 'none';
-      vehicleInfo.appendChild(document.createElement("div")).className =
-        "info-title";
-      vehicleInfo.appendChild(document.createElement("div")).className =
-        "list-wrapper";
-      vehicleInfo.appendChild(document.createElement("a")).className =
-        "vehicle-info-close";
-      vehicleInfo
-        .querySelector(".vehicle-info-close")
-        .setAttribute("role", "button");
+      // vehicleInfo.appendChild(document.createElement("div")).className =
+      //   "info-title";
+      // vehicleInfo.appendChild(document.createElement("div")).className =
+      //   "list-wrapper";
+      // vehicleInfo.appendChild(document.createElement("a")).className =
+      //   "vehicle-info-close";
+      // vehicleInfo
+      //   .querySelector(".vehicle-info-close")
+      //   .setAttribute("role", "button");
 
-      let listWrapper = document.querySelector(".list-wrapper");
-      listWrapper.appendChild(document.createElement("div")).className =
-        "list-label";
-      listWrapper.appendChild(document.createElement("ol")).className =
-        "vehicle-list";
+      // let listWrapper = document.querySelector(".list-wrapper");
+      // listWrapper.appendChild(document.createElement("div")).className =
+      //   "list-label";
+      // listWrapper.appendChild(document.createElement("ol")).className =
+      //   "vehicle-list";
 
-      let listLabel = document.querySelector(".list-label");
-      let vehicleList = document.querySelector(".vehicle-list");
+      // let listLabel = document.querySelector(".list-label");
+      // let vehicleList = document.querySelector(".vehicle-list");
 
-      vehicleInfo.style.display == "none"
-        ? (vehicleInfo.style.display = "flex")
-        : (vehicleInfo.style.display = "none");
+      // vehicleInfo.style.display == "none"
+      //   ? (vehicleInfo.style.display = "flex")
+      //   : (vehicleInfo.style.display = "none");
 
       if (e.target.parentNode.className === "client-data-buttons") {
         const dataBtns = e.target.parentNode;
@@ -163,27 +175,29 @@ export class Calculator {
         const agent = arr.find((el) => el.id === clientData.id);
         console.log(agent);
 
+        // vehicleInfo.style.display = 'flex';
+
         vehiclesForRender = function () {
-          document.querySelector(".info-title").innerText = agent.brand;
+          // document.querySelector(".info-title").innerText = agent.brand;
 
           if (e.target.className === "active-objects") {
-            listLabel.innerText = "Активные";
+            // listLabel.innerText = "Активные";
             return agent.vehicles.filter((el) => el.status === 1);
           }
           if (e.target.className === "inactive-objects") {
-            listLabel.innerText = "Приостановленные";
+            // listLabel.innerText = "Приостановленные";
             return agent.vehicles.filter((el) => el.status === 13);
           }
         };
 
-        vehiclesForRender().forEach((el) => {
-          const newLi = document.createElement("li");
-          vehicleList.appendChild(newLi).innerText = el.objName;
-        });
+        // vehiclesForRender().forEach((el) => {
+        //   const newLi = document.createElement("li");
+        //   vehicleList.appendChild(newLi).innerText = el.objName;
+        // });
 
-        console.log(vehiclesForRender());
+        // console.log(vehiclesForRender());
       }
-      console.log(e.target.parentNode.className === "client-data-buttons");
+      // console.log(e.target.parentNode.className === "client-data-buttons");
     });
   }
 
