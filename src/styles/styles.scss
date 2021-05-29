@@ -29,6 +29,16 @@
 
 * {
   box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    background-color: $backgroundWindow;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $mainBackground;
+    border-radius: 5px;
+  }
 }
 
 body {
@@ -36,18 +46,20 @@ body {
   margin: 0;
   overflow: hidden;
   text-shadow: 0 0 2px white;
+  height: calc(100vh * 4);
 }
 
 section {
   align-items: center;
   background-color: $mainBackground;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   font-size: 40px;
   font-weight: 100;
   height: 100vh;
   justify-content: flex-start;
+  padding: 0 0 24px 0;
+  overflow-y: hidden;
 }
 
 .nav {

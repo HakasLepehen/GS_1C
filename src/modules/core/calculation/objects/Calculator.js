@@ -133,15 +133,68 @@ export class Calculator {
 
         return el;
       };
-      
-      const vehicleInfo = createElement('vehicle-info');
-      const infoTitle = createElement('info-title');
-      const listWrapper = createElement('list-wrapper');
-      const listLabel = createElement('list-label');
-      const ol = createElement('ol', 'vehicle-list');
-      workData.appendChild(vehicleInfo);
-      
-      console.log(vehicleInfo);
+
+      if (!workData.contains(workData.querySelector(".vehicle-info"))) {
+        const vehicleInfo = createElement("vehicle-info");
+        const infoTitle = createElement("info-title");
+        const listWrapper = createElement("list-wrapper");
+        const listLabel = createElement("list-label");
+        const ol = createElement("vehicle-list", "ol");
+        const a = createElement("vehicle-info-close", "a");
+
+        workData.appendChild(vehicleInfo);
+        vehicleInfo.appendChild(infoTitle);
+        vehicleInfo.appendChild(listWrapper);
+        vehicleInfo.appendChild(a);
+        a.style.role = "button";
+        listWrapper.appendChild(listLabel);
+        listWrapper.appendChild(ol);
+
+        console.log(vehicleInfo);
+
+        if (e.target.parentNode.className === "client-data-buttons") {
+          const dataBtns = e.target.parentNode;
+          const clientData = dataBtns.parentNode;
+          const agent = arr.find((el) => el.id === clientData.id);
+          console.log(agent);
+
+          vehicleInfo.style.display = "flex";
+          vehicleInfo.style.height = window.innerHeight;
+          // vehicleInfo.style.top = 0;
+
+          vehiclesForRender = function () {
+            const listLabel = workData.querySelector('.list-label')
+            workData.querySelector(".info-title").innerText = agent.brand;
+
+            if (e.target.className === "active-objects") {
+              listLabel.innerText = "Активные";
+              return agent.vehicles.filter((el) => el.status === 1);
+            }
+            if (e.target.className === "inactive-objects") {
+              listLabel.innerText = "Приостановленные";
+              return agent.vehicles.filter((el) => el.status === 13);
+            }
+          };
+
+          let vehicleList = vehicleInfo.querySelector(".vehicle-list")
+
+          vehiclesForRender().forEach((el) => {
+            const newLi = document.createElement("li");
+            vehicleList.appendChild(newLi).innerText = el.objName;
+          });
+
+          console.log(vehiclesForRender());
+        }
+
+        workData.addEventListener("click", (e) => {
+          if (e.target.className === 'vehicle-info-close') {
+            console.log(e.target.parentNode)
+            e.target.parentNode.remove()
+          }
+        })
+      }
+
+      return;
 
       // let vehicleInfo = document.querySelector(".vehicle-info");
 
@@ -169,34 +222,6 @@ export class Calculator {
       //   ? (vehicleInfo.style.display = "flex")
       //   : (vehicleInfo.style.display = "none");
 
-      if (e.target.parentNode.className === "client-data-buttons") {
-        const dataBtns = e.target.parentNode;
-        const clientData = dataBtns.parentNode;
-        const agent = arr.find((el) => el.id === clientData.id);
-        console.log(agent);
-
-        // vehicleInfo.style.display = 'flex';
-
-        vehiclesForRender = function () {
-          // document.querySelector(".info-title").innerText = agent.brand;
-
-          if (e.target.className === "active-objects") {
-            // listLabel.innerText = "Активные";
-            return agent.vehicles.filter((el) => el.status === 1);
-          }
-          if (e.target.className === "inactive-objects") {
-            // listLabel.innerText = "Приостановленные";
-            return agent.vehicles.filter((el) => el.status === 13);
-          }
-        };
-
-        // vehiclesForRender().forEach((el) => {
-        //   const newLi = document.createElement("li");
-        //   vehicleList.appendChild(newLi).innerText = el.objName;
-        // });
-
-        // console.log(vehiclesForRender());
-      }
       // console.log(e.target.parentNode.className === "client-data-buttons");
     });
   }

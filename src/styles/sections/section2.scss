@@ -110,6 +110,8 @@
   }
 
   .work-wrapper {
+    display: flex;
+    flex-direction: column;
     height: calc(100vh - 2px);
     left: 434px;
     margin: auto 0 auto auto;
@@ -157,6 +159,10 @@
       max-height: 95%;
       overflow-y: scroll;
       padding: 0 20px;
+
+      &:nth-last-child(n) {
+        padding-bottom: 0;
+      }
 
       .client-data {
         border-radius: 5px;
@@ -288,6 +294,7 @@
           ol {
             font-size: 1rem;
             line-height: 1.2rem;
+            overflow-y: auto;
           }
         }
 
