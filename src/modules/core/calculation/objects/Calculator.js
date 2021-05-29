@@ -237,7 +237,7 @@ export class Calculator {
       })
 
       section2
-      .querySelector('.print')
+      .querySelector('.to-pdf')
       .addEventListener("click", () => alert('Идет распечатка!'))
   }
 }

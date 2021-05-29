@@ -85,7 +85,7 @@
 
     .refresh,
     .save-doc,
-    .print {
+    .to-pdf {
       @include submit-btn(50px, 100px);
       display: flex;
       justify-content: flex-end;
@@ -104,8 +104,8 @@
       margin-right: 5px;
     }
 
-    .print {
-      background: center / contain no-repeat url("../media/printer.svg"); // это не ошибка
+    .to-pdf {
+      background: center / contain no-repeat url("../media/pdf-file.svg"); // это не ошибка
     }
   }
 
