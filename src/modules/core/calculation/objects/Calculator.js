@@ -159,11 +159,15 @@ export class Calculator {
           console.log(agent);
 
           vehicleInfo.style.display = "flex";
-          vehicleInfo.style.height = window.innerHeight;
-          // vehicleInfo.style.top = 0;
+          vehicleInfo.style.height =
+            section2.querySelector(".work-wrapper").clientHeight - 140 + "px";
+          vehicleInfo.style.width =
+            section2.querySelector(".client-data-buttons").clientWidth +
+            40 +
+            "px";
 
           vehiclesForRender = function () {
-            const listLabel = workData.querySelector('.list-label')
+            const listLabel = workData.querySelector(".list-label");
             workData.querySelector(".info-title").innerText = agent.brand;
 
             if (e.target.className === "active-objects") {
@@ -176,7 +180,7 @@ export class Calculator {
             }
           };
 
-          let vehicleList = vehicleInfo.querySelector(".vehicle-list")
+          let vehicleList = vehicleInfo.querySelector(".vehicle-list");
 
           vehiclesForRender().forEach((el) => {
             const newLi = document.createElement("li");
@@ -187,42 +191,14 @@ export class Calculator {
         }
 
         workData.addEventListener("click", (e) => {
-          if (e.target.className === 'vehicle-info-close') {
-            console.log(e.target.parentNode)
-            e.target.parentNode.remove()
+          if (e.target.className === "vehicle-info-close") {
+            console.log(e.target.parentNode);
+            vehicleInfo.remove();
           }
-        })
+        });
       }
 
       return;
-
-      // let vehicleInfo = document.querySelector(".vehicle-info");
-
-      // vehicleInfo.getElementsByClassName.display = 'none';
-      // vehicleInfo.appendChild(document.createElement("div")).className =
-      //   "info-title";
-      // vehicleInfo.appendChild(document.createElement("div")).className =
-      //   "list-wrapper";
-      // vehicleInfo.appendChild(document.createElement("a")).className =
-      //   "vehicle-info-close";
-      // vehicleInfo
-      //   .querySelector(".vehicle-info-close")
-      //   .setAttribute("role", "button");
-
-      // let listWrapper = document.querySelector(".list-wrapper");
-      // listWrapper.appendChild(document.createElement("div")).className =
-      //   "list-label";
-      // listWrapper.appendChild(document.createElement("ol")).className =
-      //   "vehicle-list";
-
-      // let listLabel = document.querySelector(".list-label");
-      // let vehicleList = document.querySelector(".vehicle-list");
-
-      // vehicleInfo.style.display == "none"
-      //   ? (vehicleInfo.style.display = "flex")
-      //   : (vehicleInfo.style.display = "none");
-
-      // console.log(e.target.parentNode.className === "client-data-buttons");
     });
   }
 
