@@ -6,7 +6,7 @@ import {
   openAuthWindow,
   signInInGS,
 } from "../services/Auth";
-import { getAgentsArray, sortVehicles } from "../services/Object-operations";
+import { getAgentsArray, sortVehicles, createPDF } from "../services/Object-operations";
 import { Vehicle } from "./Vehicle";
 
 export class Calculator {
@@ -38,7 +38,18 @@ export class Calculator {
       agent.render();
     });
 
+    this.sendDataToCreatePdf(agents);
     this.renderDetails(agents);
+  }
+  
+  sendDataToCreatePdf(arr) {
+      document.addEventListener('createPdf', (e) => {
+        e.preventDefault();
+        createPDF(arr);
+        return;
+      })
+    
+    
   }
 
   async loadAgents() {
@@ -238,6 +249,9 @@ export class Calculator {
 
       section2
       .querySelector('.to-pdf')
-      .addEventListener("click", () => alert('Идет распечатка!'))
+      .addEventListener("click", () => {
+        const createPDF = new Event('createPdf', {bubbles: true});
+        section2.dispatchEvent(createPDF);
+      })
   }
 }
