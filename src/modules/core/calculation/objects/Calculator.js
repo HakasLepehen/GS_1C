@@ -203,7 +203,7 @@ export class Calculator {
   }
 
   addHandlers() {
-    document
+    section2
       .querySelector(".btn-submit")
       .addEventListener("click", async () => {
         const login = document.querySelector(".form-body-login").value.trim();
@@ -234,6 +234,10 @@ export class Calculator {
           );
           console.error(e.message);
         }
-      });
+      })
+
+      section2
+      .querySelector('.print')
+      .addEventListener("click", () => alert('Идет распечатка!'))
   }
 }
