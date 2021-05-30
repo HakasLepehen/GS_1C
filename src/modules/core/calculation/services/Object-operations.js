@@ -24,9 +24,24 @@ export function sortVehicles(clientsArr, vehiclesArr) {
 }
 
 export function createPDF(data) {
-  const dd = data.map((cur, index) => {
-    
+  const dd = data.map((cur) => {
+    return [cur.brand, cur.activeObjCount, cur.inactiveObjCount];
   });
+  console.log(dd);
 
-  
+  const pdfData = {
+    content: [
+      {
+        table: {
+          body: [["Компания", "Кол-во активных", "Кол-во неактивных"], 
+                  ...dd
+                ],
+        },
+      },
+    ],
+  };
+
+  pdfMake.createPdf(pdfData).open();
 }
+
+

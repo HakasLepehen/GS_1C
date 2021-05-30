@@ -43,10 +43,11 @@ export class Calculator {
   }
   
   sendDataToCreatePdf(arr) {
+    console.log('Масив клиентов для распечатки', arr);
       document.addEventListener('createPdf', (e) => {
         e.preventDefault();
+        console.log('Передается массив на распечатку', arr);
         createPDF(arr);
-        return;
       })
     
     
