@@ -42,6 +42,7 @@ export function createPDF(data) {
   };
 
   pdfMake.createPdf(pdfData).open();
+  // pdfMake.createPdf(pdfData).open({}, window);
 }
 
 
