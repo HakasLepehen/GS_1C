@@ -90,7 +90,7 @@ module.exports = {
     ],
     externalsType: 'script',
     externals: {
-        // 'axios': axios
+        wialon: 'https://hst-api.wialon.com/wsdk/script/wialon.js'
     },
 
     module: {

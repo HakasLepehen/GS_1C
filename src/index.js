@@ -4,10 +4,11 @@ import './fonts/Montserrat-Regular.ttf';
 import './modules/vendors/GSconfig';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import {initDealsOnMap} from "./modules/core/dealsOnMap/dealsOnMap";
-// import {Calculator} from "./modules/core/calculation/objects/Calculator";
 import {initCalculation} from "./modules/core/calculation/Сalculation";
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 // Плавное переключение по навигации
 const a = document.querySelectorAll('a[href*="#"]:not([href="#"])');
