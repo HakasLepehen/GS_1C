@@ -7,6 +7,7 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import {initDealsOnMap} from "./modules/core/dealsOnMap/dealsOnMap";
 import {initCalculation} from "./modules/core/calculation/Сalculation";
 
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 
