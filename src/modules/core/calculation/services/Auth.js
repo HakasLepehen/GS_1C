@@ -1,24 +1,3 @@
-import axios from "axios";
-
-//Метод авторизации в системе мониторинга
-export async function signInInGS(login, password) {
-    try {
-        const response = await axios.get(window.configuration.url + 'auth/login', {
-            params: {
-                username: login,
-                password: password
-            }
-        });
-
-        if (response.data.Error) {
-            return response.data;
-        }
-            return response.data
-    } catch (e) {
-        return new Error('Что то пошло не так. Обнови страницу, либо пиши разработчику!')
-    }
-}
-
 export function displayError(str) {
     document.querySelector('.form-body span').innerHTML = str;
     document.querySelector('.form-body-login').value = null;

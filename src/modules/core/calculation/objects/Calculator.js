@@ -8,38 +8,45 @@ import {
 } from "../services/Auth";
 import { getAgentsArray, sortVehicles, createPDF } from "../services/Object-operations";
 import { Vehicle } from "./Vehicle";
+import { Glonasssoft } from "./Glonasssoft";
 
 export class Calculator {
-  get isLogged() {
-    return !!getCookie("X-Auth");
-  }
 
   constructor() {
-    this.user = null;
-    this.token = getCookie("X-Auth") || null;
     this.addHandlers();
   }
 
+  // async init() {
+  //   if (!this.isLogged) {
+  //     setTimeout(() => {
+  //       return openAuthWindow();
+  //     }, 1000);
+  //     return;
+  //   }
+
+  //   let wrapper = document.querySelector(".work-data");
+
+  //   wrapper.innerHTML = null;
+
+  //   let agents = await this.loadData();
+  //   agents.forEach((agent) => {
+  //     agent.countVehicles();
+  //     agent.render();
+  //   });
+
+  //   this.sendDataToCreatePdf(agents);
+  //   this.renderDetails(agents);
+  // }
+
   async init() {
-    if (!this.isLogged) {
+    let glonasssoft = new Glonasssoft();
+
+    if (!glonasssoft.isLogged()) {
       setTimeout(() => {
         return openAuthWindow();
       }, 1000);
       return;
     }
-
-    let wrapper = document.querySelector(".work-data");
-
-    wrapper.innerHTML = null;
-
-    let agents = await this.loadData();
-    agents.forEach((agent) => {
-      agent.countVehicles();
-      agent.render();
-    });
-
-    this.sendDataToCreatePdf(agents);
-    this.renderDetails(agents);
   }
   
   sendDataToCreatePdf(arr) {
@@ -72,19 +79,7 @@ export class Calculator {
   }
 
   async getAgents() {
-    try {
-      return await axios.get(window.configuration.url + "agents", {
-        headers: {
-          "X-Auth": this.token,
-        },
-      });
-    } catch (e) {
-      if (e.response.status === 401) {
-        deleteCookie("X-Auth");
-        e.code = 401;
-        throw e;
-      }
-    }
+    
   }
 
   async getVehicles() {
@@ -241,9 +236,7 @@ export class Calculator {
 
           return data.AuthId;
         } catch (e) {
-          displayError(
-            "Что то пошло не так. Обнови страницу, либо пиши разработчику!"
-          );
+          displayError(e);
           console.error(e.message);
         }
       })
