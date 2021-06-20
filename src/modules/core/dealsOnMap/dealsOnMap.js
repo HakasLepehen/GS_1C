@@ -39,7 +39,7 @@ function tokenReceived(e) {
   }
 }
 
-getToken()
+// getToken()
 
     // const hosting = "https://hosting.wialon.ru";
 // const app = "Calculator-wialon";
