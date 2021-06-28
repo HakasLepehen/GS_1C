@@ -19,12 +19,13 @@ a.forEach((el) => {
         if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '')
             || location.hostname === this.hostname) {
 
-            let target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
+            let section = $(this.hash);
+            console.log('Hash: ', this.hash.slice(1));
+            section = section.length ? section : $('[name=' + this.hash.slice(1) + ']');
+            if (section.length) {
                 e.preventDefault();
                 window.scrollTo({
-                    top: target.offset().top,
+                    top: section.offset().top,
                     behavior: 'smooth'
                 })
                 return false;
