@@ -13,6 +13,7 @@ import { Glonasssoft } from "./Glonasssoft";
 export class Calculator {
 
   constructor() {
+    this.glonasssoft = new Glonasssoft();
     this.addHandlers();
   }
 
@@ -39,18 +40,18 @@ export class Calculator {
   // }
 
   async init() {
-    let glonasssoft = new Glonasssoft();
+    console.log('Новый инстанс', this.glonasssoft)
 
-    if (!glonasssoft.isLogged()) {
-      setTimeout(() => {
-        return openAuthWindow();
-      }, 1000);
-      return;
-    }
+  //   if (!glonasssoft.isLogged()) {
+  //     setTimeout(() => {
+  //       return openAuthWindow();
+  //     }, 1000);
+  //     return;
+  //   }
   }
   
   sendDataToCreatePdf(arr) {
-    console.log('Масив клиентов для распечатки', arr);
+    console.log('Масcив клиентов для распечатки', arr);
       document.addEventListener('createPdf', (e) => {
         e.preventDefault();
         console.log('Передается массив на распечатку', arr);

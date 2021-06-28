@@ -1,7 +1,7 @@
 import './styles/styles.scss';
-import './modules/vendors/bootstrap.js';
+import './modules/libs/bootstrap.js';
 import './fonts/Montserrat-Regular.ttf';
-import './modules/vendors/GSconfig';
+import './modules/libs/GSconfig';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import {initDealsOnMap} from "./modules/core/dealsOnMap/dealsOnMap";
@@ -23,9 +23,10 @@ a.forEach((el) => {
             target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
             if (target.length) {
                 e.preventDefault();
-                $('html,body').animate({
-                    scrollTop: target.offset().top
-                }, 500);
+                window.scrollTo({
+                    top: target.offset().top,
+                    behavior: 'smooth'
+                })
                 return false;
             }
         }

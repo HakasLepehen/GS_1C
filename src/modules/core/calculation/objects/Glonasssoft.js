@@ -1,7 +1,9 @@
+import { Monitoring } from "./Monitoring";
+
 export class Glonasssoft extends Monitoring {
   constructor() {
     super();
-    this.name = "Глонасссофт";
+    this.name = 'Глонасссофт';
   }
 
   async logIn(login, password) {

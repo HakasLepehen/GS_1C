@@ -84,8 +84,8 @@ module.exports = {
         //     }
         // )
         new webpack.ProvidePlugin({
-            $: path.resolve(path.join(__dirname, 'src/modules/vendors/jquery_2.1.3.js')),
-            jQuery: path.resolve(path.join(__dirname, 'src/modules/vendors/jquery_2.1.3.js')),
+            $: path.resolve(path.join(__dirname, 'src/modules/libs/jquery_2.1.3.js')),
+            jQuery: path.resolve(path.join(__dirname, 'src/modules/libs/jquery_2.1.3.js')),
         })
     ],
     externalsType: 'script',
