@@ -4,6 +4,7 @@ export class Glonasssoft extends Monitoring {
   constructor() {
     super();
     this.name = 'Глонасссофт';
+    this.addHandlers();
   }
 
   async logIn(login, password) {
@@ -43,5 +44,9 @@ export class Glonasssoft extends Monitoring {
         throw e;
       }
     }
+  }
+
+  addHandlers() {
+    
   }
 }

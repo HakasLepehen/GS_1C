@@ -13,7 +13,6 @@ import { Glonasssoft } from "./Glonasssoft";
 export class Calculator {
 
   constructor() {
-    this.glonasssoft = new Glonasssoft();
     this.addHandlers();
   }
 
@@ -40,7 +39,18 @@ export class Calculator {
   // }
 
   async init() {
-    console.log('Новый инстанс', this.glonasssoft)
+    let glonasssoft = new Glonasssoft();
+
+    document.querySelector('.work-data').innerHTML = null;
+
+    console.log(glonasssoft.isLogged('X-Auth'))
+
+    if (!glonasssoft.isLogged('X-Auth')) {
+      setTimeout(() => {
+        return openAuthWindow();
+      },1000)
+      return;
+    }
 
   //   if (!glonasssoft.isLogged()) {
   //     setTimeout(() => {
@@ -76,7 +86,7 @@ export class Calculator {
 
     agents = agents.data.filter((agent) => agent.agentInfoType === 0);
 
-    return (processedAgents = getAgentsArray(agents));
+    return processedAgents = getAgentsArray(agents);
   }
 
   async getAgents() {
@@ -221,25 +231,27 @@ export class Calculator {
 
         if (!login || !password) return displayError("Введите логин и пароль!");
 
-        try {
-          let data = await signInInGS(login, password);
+        closeAuthWindow();
 
-          if (data.Error) {
-            return displayError("Вы неправильно ввели логин или пароль");
-          }
+        // try {
+        //   let data = await signInInGS(login, password);
 
-          this.user = data.User;
-          this.token = data.AuthId;
+        //   if (data.Error) {
+        //     return displayError("Вы неправильно ввели логин или пароль");
+        //   }
 
-          setCookie("X-Auth", data.AuthId);
-          closeAuthWindow();
-          await this.init();
+        //   this.user = data.User;
+        //   this.token = data.AuthId;
 
-          return data.AuthId;
-        } catch (e) {
-          displayError(e);
-          console.error(e.message);
-        }
+        //   setCookie("X-Auth", data.AuthId);
+        //   closeAuthWindow();
+        //   await this.init();
+
+        //   return data.AuthId;
+        // } catch (e) {
+        //   displayError(e);
+        //   console.error(e.message);
+        // }
       })
 
       section2
