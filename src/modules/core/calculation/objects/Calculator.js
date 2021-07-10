@@ -6,13 +6,18 @@ import {
   openAuthWindow,
   signInInGS,
 } from "../services/Auth";
-import { getAgentsArray, sortVehicles, createPDF } from "../services/Object-operations";
+import {
+  getAgentsArray,
+  sortVehicles,
+  createPDF,
+} from "../services/Object-operations";
 import { Vehicle } from "./Vehicle";
 import { Glonasssoft } from "./Glonasssoft";
 
 export class Calculator {
-
   constructor() {
+    this.user = {};
+    this.glonasssoft = new Glonasssoft();
     this.addHandlers();
   }
 
@@ -39,36 +44,36 @@ export class Calculator {
   // }
 
   async init() {
-    let glonasssoft = new Glonasssoft();
+    // let glonasssoft = new Glonasssoft();
 
-    document.querySelector('.work-data').innerHTML = null;
+    document.querySelector(".work-data").innerHTML = null;
 
-    console.log(glonasssoft.isLogged('X-Auth'))
-
-    if (!glonasssoft.isLogged('X-Auth')) {
+    if (!this.glonasssoft.isLogged("X-Auth")) {
       setTimeout(() => {
         return openAuthWindow();
-      },1000)
-      return;
+      }, 1000);
+      await this.globalSignIn();
     }
 
-  //   if (!glonasssoft.isLogged()) {
-  //     setTimeout(() => {
-  //       return openAuthWindow();
-  //     }, 1000);
-  //     return;
-  //   }
+    //   if (!glonasssoft.isLogged()) {
+    //     setTimeout(() => {
+    //       return openAuthWindow();
+    //     }, 1000);
+    //     return;
+    //   }
   }
-  
+
   sendDataToCreatePdf(arr) {
-    console.log('Масcив клиентов для распечатки', arr);
-      document.addEventListener('createPdf', (e) => {
-        e.preventDefault();
-        console.log('Передается массив на распечатку', arr);
-        createPDF(arr);
-      })
-    
-    
+    console.log("Масcив клиентов для распечатки", arr);
+    document.addEventListener("createPdf", (e) => {
+      e.preventDefault();
+      console.log("Передается массив на распечатку", arr);
+      createPDF(arr);
+    });
+  }
+
+  async globalSignIn() {
+    alert(this.glonasssoft.user.username)
   }
 
   async loadAgents() {
@@ -86,12 +91,10 @@ export class Calculator {
 
     agents = agents.data.filter((agent) => agent.agentInfoType === 0);
 
-    return processedAgents = getAgentsArray(agents);
+    return (processedAgents = getAgentsArray(agents));
   }
 
-  async getAgents() {
-    
-  }
+  async getAgents() {}
 
   async getVehicles() {
     try {
@@ -221,44 +224,51 @@ export class Calculator {
   }
 
   addHandlers() {
-    section2
-      .querySelector(".btn-submit")
-      .addEventListener("click", async () => {
-        const login = document.querySelector(".form-body-login").value.trim();
-        const password = document
-          .querySelector(".form-body-password")
-          .value.trim();
+    const submitBtn = section2.querySelector(".btn-submit");
 
-        if (!login || !password) return displayError("Введите логин и пароль!");
+    submitBtn.addEventListener("click", async () => {
+      const username = document.querySelector(".form-body-login").value.trim();
+      const password = document
+        .querySelector(".form-body-password")
+        .value.trim();
 
-        closeAuthWindow();
+      if (!username || !password) return displayError("Введите логин и пароль!");
 
-        // try {
-        //   let data = await signInInGS(login, password);
+      const event = new CustomEvent("userReceived", {
+        detail: {
+          username: username,
+          password: password,
+        },
+      });
 
-        //   if (data.Error) {
-        //     return displayError("Вы неправильно ввели логин или пароль");
-        //   }
+      section2.dispatchEvent(event);
 
-        //   this.user = data.User;
-        //   this.token = data.AuthId;
+      closeAuthWindow();
 
-        //   setCookie("X-Auth", data.AuthId);
-        //   closeAuthWindow();
-        //   await this.init();
+      // try {
+      //   let data = await signInInGS(login, password);
 
-        //   return data.AuthId;
-        // } catch (e) {
-        //   displayError(e);
-        //   console.error(e.message);
-        // }
-      })
+      //   if (data.Error) {
+      //     return displayError("Вы неправильно ввели логин или пароль");
+      //   }
 
-      section2
-      .querySelector('.to-pdf')
-      .addEventListener("click", () => {
-        const createPDF = new Event('createPdf', {bubbles: true});
-        section2.dispatchEvent(createPDF);
-      })
+      //   this.user = data.User;
+      //   this.token = data.AuthId;
+
+      //   setCookie("X-Auth", data.AuthId);
+      //   closeAuthWindow();
+      //   await this.init();
+
+      //   return data.AuthId;
+      // } catch (e) {
+      //   displayError(e);
+      //   console.error(e.message);
+      // }
+    });
+
+    section2.querySelector(".to-pdf").addEventListener("click", () => {
+      const createPDF = new Event("createPdf", { bubbles: true });
+      section2.dispatchEvent(createPDF);
+    });
   }
 }

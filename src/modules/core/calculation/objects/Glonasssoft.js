@@ -7,13 +7,13 @@ export class Glonasssoft extends Monitoring {
     this.addHandlers();
   }
 
-  async logIn(login, password) {
+  async logIn(username, password) {
     try {
       const response = await axios.get(
         window.configuration.url + "auth/login",
         {
           params: {
-            username: login,
+            username: username,
             password: password,
           },
         }
@@ -46,7 +46,10 @@ export class Glonasssoft extends Monitoring {
     }
   }
 
-  addHandlers() {
-    
+  async addHandlers() {
+    section2.addEventListener("userReceived", (e) => {
+      this.user = e.detail;
+      console.log(this.user);
+    });
   }
 }
