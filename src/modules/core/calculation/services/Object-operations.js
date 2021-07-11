@@ -1,4 +1,4 @@
-import { Agent } from "../objects/Agent";
+import { Agent } from "../objects/glonass-elements/Agent";
 
 export function getAgentsArray(arr) {
   return arr.map((el) => {

@@ -1,14 +1,15 @@
-import { Monitoring } from "./Monitoring";
+import Monitoring from "./Monitoring";
+import axios from "axios";
 
 export class Glonasssoft extends Monitoring {
   constructor() {
     super();
-    this.name = 'Глонасссофт';
+    this.name = "Глонасссофт";
     this.addHandlers();
   }
 
+  //void, authorization in Glonasssoft system and initialize data in Glonasssoft instance
   async logIn(username, password) {
-    try {
       const response = await axios.get(
         window.configuration.url + "auth/login",
         {
@@ -20,14 +21,12 @@ export class Glonasssoft extends Monitoring {
       );
 
       if (response.data.Error) {
-        return response.data;
+        let err = new Error("Вы неправильно ввели логин или пароль");
+        err.display = "Вы неправильно ввели логин или пароль";
+        throw err;
       }
-      return response.data;
-    } catch (e) {
-      return new Error(
-        "Что то пошло не так. Обнови страницу, либо пиши разработчику!"
-      );
-    }
+      this.user = response.data.User;
+      this.token = response.data.AuthId;
   }
 
   async getAgents() {
@@ -46,10 +45,5 @@ export class Glonasssoft extends Monitoring {
     }
   }
 
-  async addHandlers() {
-    section2.addEventListener("userReceived", (e) => {
-      this.user = e.detail;
-      console.log(this.user);
-    });
-  }
+  async addHandlers() {}
 }

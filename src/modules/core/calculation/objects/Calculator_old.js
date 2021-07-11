@@ -7,8 +7,8 @@ import {
   signInInGS,
 } from "../services/Auth";
 import { getAgentsArray, sortVehicles, createPDF } from "../services/Object-operations";
-import { Vehicle } from "./Vehicle";
-import { Glonasssoft } from "./Glonasssoft";
+import { Vehicle } from "./glonass-elements/Vehicle";
+import { Glonasssoft } from "./glonass-systems/Glonasssoft";
 
 export class Calculator {
 

@@ -1,6 +1,6 @@
-import { getCookie } from "../services/cookie";
+import { getCookie } from "../../services/cookie";
 
-export class Monitoring {
+export default class Monitoring {
   constructor() {
     this.name = null;
     this.user = null;

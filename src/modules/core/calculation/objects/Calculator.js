@@ -5,14 +5,14 @@ import {
   displayError,
   openAuthWindow,
   signInInGS,
-} from "../services/Auth";
+} from "../services/modal-operations";
 import {
   getAgentsArray,
   sortVehicles,
   createPDF,
 } from "../services/Object-operations";
-import { Vehicle } from "./Vehicle";
-import { Glonasssoft } from "./Glonasssoft";
+import { Vehicle } from "./glonass-elements/Vehicle";
+import { Glonasssoft } from "./glonass-systems/Glonasssoft";
 
 export class Calculator {
   constructor() {
@@ -72,8 +72,22 @@ export class Calculator {
     });
   }
 
+  //login in all systems of monitoring and writing tokens into a cookies
   async globalSignIn() {
-    alert(this.glonasssoft.user.username)
+    section2.addEventListener("userReceived", async (e) => {
+      this.user = e.detail;
+      try {
+        await this.glonasssoft.logIn(this.user.username, this.user.password);
+        closeAuthWindow();
+        setCookie("X-Auth", this.glonasssoft.token);
+        await this.init();
+      } catch (e) {
+        return displayError(
+          e.display ||
+            `Что то пошло не так. Обнови страницу, либо пиши разработчику! Сообщение об ошибке: ${e.message}`
+        );
+      }
+    });
   }
 
   async loadAgents() {
@@ -232,7 +246,8 @@ export class Calculator {
         .querySelector(".form-body-password")
         .value.trim();
 
-      if (!username || !password) return displayError("Введите логин и пароль!");
+      if (!username || !password)
+        return displayError("Введите логин и пароль!");
 
       const event = new CustomEvent("userReceived", {
         detail: {
@@ -242,28 +257,6 @@ export class Calculator {
       });
 
       section2.dispatchEvent(event);
-
-      closeAuthWindow();
-
-      // try {
-      //   let data = await signInInGS(login, password);
-
-      //   if (data.Error) {
-      //     return displayError("Вы неправильно ввели логин или пароль");
-      //   }
-
-      //   this.user = data.User;
-      //   this.token = data.AuthId;
-
-      //   setCookie("X-Auth", data.AuthId);
-      //   closeAuthWindow();
-      //   await this.init();
-
-      //   return data.AuthId;
-      // } catch (e) {
-      //   displayError(e);
-      //   console.error(e.message);
-      // }
     });
 
     section2.querySelector(".to-pdf").addEventListener("click", () => {
