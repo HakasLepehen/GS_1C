@@ -1,7 +1,6 @@
-import {Calculator} from "./objects/Calculator";
-
+import { Calculator } from "./objects/Calculator";
 
 export function initCalculation() {
-    const app = new Calculator();
-    app.init();
+  const app = new Calculator();
+  app.init();
 }

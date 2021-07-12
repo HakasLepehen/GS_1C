@@ -13,34 +13,36 @@ import {
 } from "../services/Object-operations";
 import { Vehicle } from "./glonass-elements/Vehicle";
 import { Glonasssoft } from "./glonass-systems/Glonasssoft";
+import { Wialon } from "./glonass-systems/Wialon";
 
 export class Calculator {
   constructor() {
     this.user = {};
     this.glonasssoft = new Glonasssoft();
+    this.wialon = new Wialon();
     this.addHandlers();
   }
 
   // async init() {
-  //   if (!this.isLogged) {
+  // if (!this.isLogged) {
   //     setTimeout(() => {
   //       return openAuthWindow();
   //     }, 1000);
   //     return;
-  //   }
+  // }
 
-  //   let wrapper = document.querySelector(".work-data");
+  // let wrapper = document.querySelector(".work-data");
 
-  //   wrapper.innerHTML = null;
+  // wrapper.innerHTML = null;
 
-  //   let agents = await this.loadData();
-  //   agents.forEach((agent) => {
+  // let agents = await this.loadData();
+  // agents.forEach((agent) => {
   //     agent.countVehicles();
   //     agent.render();
-  //   });
+  // });
 
-  //   this.sendDataToCreatePdf(agents);
-  //   this.renderDetails(agents);
+  // this.sendDataToCreatePdf(agents);
+  // this.renderDetails(agents);
   // }
 
   async init() {
@@ -55,12 +57,16 @@ export class Calculator {
       await this.globalSignIn();
     }
 
-    //   if (!glonasssoft.isLogged()) {
+    if (!this.wialon.isLogged("w-token")) {
+      await this.wialon.logIn();
+    }
+
+    // if (!glonasssoft.isLogged()) {
     //     setTimeout(() => {
     //       return openAuthWindow();
     //     }, 1000);
     //     return;
-    //   }
+    // }
   }
 
   sendDataToCreatePdf(arr) {
@@ -72,7 +78,7 @@ export class Calculator {
     });
   }
 
-  //login in all systems of monitoring and writing tokens into a cookies
+  // login in all systems of monitoring and writing tokens into a cookies
   async globalSignIn() {
     section2.addEventListener("userReceived", async (e) => {
       this.user = e.detail;
