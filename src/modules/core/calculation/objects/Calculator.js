@@ -50,16 +50,17 @@ export class Calculator {
 
     document.querySelector(".work-data").innerHTML = null;
 
-    if (!this.glonasssoft.isLogged("X-Auth")) {
-      setTimeout(() => {
-        return openAuthWindow();
-      }, 1000);
-      await this.globalSignIn();
-    }
+    // if (!this.glonasssoft.isLogged("X-Auth") || !this.wialon.isLogged('w-token')) {
+    //   setTimeout(() => {
+    //     return openAuthWindow();
+    //   }, 1000);
+    //   await this.globalSignIn();
+    // }
 
-    if (!this.wialon.isLogged("w-token")) {
-      await this.wialon.logIn();
-    }
+    // if (!this.wialon.isLogged("w-token")) {
+    //   await this.wialon.logIn();
+    //   setCookie('w-token', this.wialon.token);
+    // }
 
     // if (!glonasssoft.isLogged()) {
     //     setTimeout(() => {
@@ -80,20 +81,16 @@ export class Calculator {
 
   // login in all systems of monitoring and writing tokens into a cookies
   async globalSignIn() {
-    section2.addEventListener("userReceived", async (e) => {
-      this.user = e.detail;
-      try {
-        await this.glonasssoft.logIn(this.user.username, this.user.password);
-        closeAuthWindow();
-        setCookie("X-Auth", this.glonasssoft.token);
-        await this.init();
-      } catch (e) {
-        return displayError(
-          e.display ||
-            `Что то пошло не так. Обнови страницу, либо пиши разработчику! Сообщение об ошибке: ${e.message}`
-        );
-      }
-    });
+    if (!this.glonasssoft.isLogged('X-Auth')) {
+      // await this.glonasssoft.logIn()
+      setTimeout(() => {
+        return openAuthWindow();
+      }, 1000);
+    }
+
+    if(!this.wialon.isLogged('w-token')) {
+      await this.wialon.logIn();
+    }
   }
 
   async loadAgents() {
@@ -263,6 +260,7 @@ export class Calculator {
       });
 
       section2.dispatchEvent(event);
+      closeAuthWindow()
     });
 
     section2.querySelector(".to-pdf").addEventListener("click", () => {

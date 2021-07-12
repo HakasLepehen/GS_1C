@@ -8,6 +8,41 @@ export class Glonasssoft extends Monitoring {
     this.addHandlers();
   }
 
+  async getToken() {
+    section2.addEventListener("userReceived", this.userReceived);
+  }
+
+  async userReceived(e) {
+    this.user = e.detail;
+
+    try {
+      await this.glonasssoft.logIn(this.user.username, this.user.password);
+      setCookie("X-Auth", this.glonasssoft.token);
+      await this.init();
+    } catch (e) {
+      return displayError(
+        e.display ||
+          `Что то пошло не так. Обнови страницу, либо пиши разработчику! Сообщение об ошибке: ${e.message}`
+      );
+    }
+  }
+
+  async getAgents() {
+    try {
+      return await axios.get(window.configuration.url + "agents", {
+        headers: {
+          "X-Auth": this.token,
+        },
+      });
+    } catch (e) {
+      if (e.response.status === 401) {
+        deleteCookie("X-Auth");
+        e.code = 401;
+        throw e;
+      }
+    }
+  }
+
   //void, authorization in Glonasssoft system and initialize data in Glonasssoft instance
   async logIn(username, password) {
       const response = await axios.get(
@@ -29,21 +64,7 @@ export class Glonasssoft extends Monitoring {
       this.token = response.data.AuthId;
   }
 
-  async getAgents() {
-    try {
-      return await axios.get(window.configuration.url + "agents", {
-        headers: {
-          "X-Auth": this.token,
-        },
-      });
-    } catch (e) {
-      if (e.response.status === 401) {
-        deleteCookie("X-Auth");
-        e.code = 401;
-        throw e;
-      }
-    }
-  }
+
 
   async addHandlers() {}
 }

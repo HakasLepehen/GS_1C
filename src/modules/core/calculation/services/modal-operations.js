@@ -8,7 +8,7 @@ export function displayError(str) {
   }, 5000);
 }
 
-export function openAuthWindow() {
+export async function openAuthWindow() {
   let modal = document.querySelector(".modal");
 
   modal.style.display = "flex";
@@ -16,7 +16,7 @@ export function openAuthWindow() {
   modal.style.animation = "fall 0.5s 1";
 }
 
-export function closeAuthWindow() {
+export async function closeAuthWindow() {
   let modal = document.querySelector(".modal");
 
   modal.style.animation = "up 0.5s 1";
