@@ -1,4 +1,6 @@
 import Monitoring from "./Monitoring";
+import { closeAuthWindow, displayError } from "../../services/modal-operations";
+import { deleteCookie, setCookie } from "../../services/cookie";
 import axios from "axios";
 
 export class Glonasssoft extends Monitoring {
@@ -9,16 +11,17 @@ export class Glonasssoft extends Monitoring {
   }
 
   async getToken() {
-    section2.addEventListener("userReceived", this.userReceived);
+    section2.addEventListener("userReceived", async (e) => {
+      return await this.userReceived(e);
+    });
   }
 
   async userReceived(e) {
-    this.user = e.detail;
-
     try {
-      await this.glonasssoft.logIn(this.user.username, this.user.password);
-      setCookie("X-Auth", this.glonasssoft.token);
-      await this.init();
+      await this.logIn(e.detail.username, e.detail.password);
+      setCookie("X-Auth", this.token);
+      section2.removeEventListener("userReceived", this.userReceived);
+      closeAuthWindow();
     } catch (e) {
       return displayError(
         e.display ||
@@ -29,6 +32,7 @@ export class Glonasssoft extends Monitoring {
 
   async getAgents() {
     try {
+      console.log('Получаю данные по клиентам ГС с токеном: ', this.token);
       return await axios.get(window.configuration.url + "agents", {
         headers: {
           "X-Auth": this.token,
@@ -37,6 +41,8 @@ export class Glonasssoft extends Monitoring {
     } catch (e) {
       if (e.response.status === 401) {
         deleteCookie("X-Auth");
+        await this.getToken();
+        
         e.code = 401;
         throw e;
       }

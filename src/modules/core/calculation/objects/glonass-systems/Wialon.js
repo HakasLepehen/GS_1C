@@ -10,8 +10,13 @@ export class Wialon extends Monitoring {
     this.addHandlers();
   }
 
+  async auth() {
+    console.log('сработал метод auth()')
+  }
+
   async logIn() {
-    this.getToken();
+    await this.getToken();
+    await this.auth();
   }
 
   async getToken() {

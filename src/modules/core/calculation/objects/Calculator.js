@@ -1,10 +1,8 @@
 import axios from "axios";
 import { deleteCookie, getCookie, setCookie } from "../services/cookie";
 import {
-  closeAuthWindow,
   displayError,
-  openAuthWindow,
-  signInInGS,
+  openAuthWindow
 } from "../services/modal-operations";
 import {
   getAgentsArray,
@@ -14,6 +12,7 @@ import {
 import { Vehicle } from "./glonass-elements/Vehicle";
 import { Glonasssoft } from "./glonass-systems/Glonasssoft";
 import { Wialon } from "./glonass-systems/Wialon";
+import wialon from 'wialon';
 
 export class Calculator {
   constructor() {
@@ -46,28 +45,14 @@ export class Calculator {
   // }
 
   async init() {
-    // let glonasssoft = new Glonasssoft();
-
     document.querySelector(".work-data").innerHTML = null;
 
-    // if (!this.glonasssoft.isLogged("X-Auth") || !this.wialon.isLogged('w-token')) {
-    //   setTimeout(() => {
-    //     return openAuthWindow();
-    //   }, 1000);
-    //   await this.globalSignIn();
-    // }
+    await this.globalSignIn();
+    
+    let agents = await this.loadAgents();
 
-    // if (!this.wialon.isLogged("w-token")) {
-    //   await this.wialon.logIn();
-    //   setCookie('w-token', this.wialon.token);
-    // }
-
-    // if (!glonasssoft.isLogged()) {
-    //     setTimeout(() => {
-    //       return openAuthWindow();
-    //     }, 1000);
-    //     return;
-    // }
+    console.log(agents);
+    
   }
 
   sendDataToCreatePdf(arr) {
@@ -81,11 +66,14 @@ export class Calculator {
 
   // login in all systems of monitoring and writing tokens into a cookies
   async globalSignIn() {
+    console.log('Система авторизована в Глонасссофте', this.glonasssoft.isLogged('X-Auth'));
+    console.log('Система авторизована в Виалоне', this.wialon.isLogged('w-token'))
+
     if (!this.glonasssoft.isLogged('X-Auth')) {
-      // await this.glonasssoft.logIn()
       setTimeout(() => {
         return openAuthWindow();
       }, 1000);
+      await this.glonasssoft.getToken();
     }
 
     if(!this.wialon.isLogged('w-token')) {
@@ -97,10 +85,11 @@ export class Calculator {
     let agents, processedAgents;
 
     try {
-      agents = await this.getAgents();
+      agents = await this.glonasssoft.getAgents();
     } catch (e) {
       if (e.code === 401) {
-        return openAuthWindow();
+        console.log(this.glonasssoft.isLogged());
+        this.globalSignIn();
       }
 
       return console.error("Unexpected error", e);
@@ -110,8 +99,6 @@ export class Calculator {
 
     return (processedAgents = getAgentsArray(agents));
   }
-
-  async getAgents() {}
 
   async getVehicles() {
     try {
@@ -260,7 +247,6 @@ export class Calculator {
       });
 
       section2.dispatchEvent(event);
-      closeAuthWindow()
     });
 
     section2.querySelector(".to-pdf").addEventListener("click", () => {
