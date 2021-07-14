@@ -66,17 +66,17 @@ export class Calculator {
 
   // login in all systems of monitoring and writing tokens into a cookies
   async globalSignIn() {
-    console.log('Система авторизована в Глонасссофте', this.glonasssoft.isLogged('X-Auth'));
-    console.log('Система авторизована в Виалоне', this.wialon.isLogged('w-token'))
 
     if (!this.glonasssoft.isLogged('X-Auth')) {
       setTimeout(() => {
         return openAuthWindow();
       }, 1000);
+      console.log('Авторизуюсь в Глонасссофт');
       await this.glonasssoft.getToken();
     }
 
     if(!this.wialon.isLogged('w-token')) {
+      console.log('Авторизуюсь в виалон');
       await this.wialon.logIn();
     }
   }
@@ -88,8 +88,8 @@ export class Calculator {
       agents = await this.glonasssoft.getAgents();
     } catch (e) {
       if (e.code === 401) {
-        console.log(this.glonasssoft.isLogged());
-        this.globalSignIn();
+        console.log('нет авторизации в глонассофте ', this.glonasssoft.isLogged());
+        await this.glonasssoft.getToken();
       }
 
       return console.error("Unexpected error", e);

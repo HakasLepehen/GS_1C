@@ -1,19 +1,23 @@
 import Monitoring from "./Monitoring";
 import { closeAuthWindow, displayError } from "../../services/modal-operations";
-import { deleteCookie, setCookie } from "../../services/cookie";
+import { deleteCookie, getCookie, setCookie } from "../../services/cookie";
 import axios from "axios";
 
 export class Glonasssoft extends Monitoring {
   constructor() {
     super();
+    this.token = getCookie("X-Auth") || "";
     this.name = "Глонасссофт";
     this.addHandlers();
   }
 
   async getToken() {
-    section2.addEventListener("userReceived", async (e) => {
-      return await this.userReceived(e);
-    });
+    if (!this.token) {
+      section2.addEventListener("userReceived", async (e) => {
+        return await this.userReceived(e);
+      });
+    }
+    return;
   }
 
   async userReceived(e) {
@@ -32,7 +36,7 @@ export class Glonasssoft extends Monitoring {
 
   async getAgents() {
     try {
-      console.log('Получаю данные по клиентам ГС с токеном: ', this.token);
+      console.log("Получаю данные по клиентам ГС с токеном: ", this.token);
       return await axios.get(window.configuration.url + "agents", {
         headers: {
           "X-Auth": this.token,
@@ -41,8 +45,6 @@ export class Glonasssoft extends Monitoring {
     } catch (e) {
       if (e.response.status === 401) {
         deleteCookie("X-Auth");
-        await this.getToken();
-        
         e.code = 401;
         throw e;
       }
@@ -51,26 +53,21 @@ export class Glonasssoft extends Monitoring {
 
   //void, authorization in Glonasssoft system and initialize data in Glonasssoft instance
   async logIn(username, password) {
-      const response = await axios.get(
-        window.configuration.url + "auth/login",
-        {
-          params: {
-            username: username,
-            password: password,
-          },
-        }
-      );
+    const response = await axios.get(window.configuration.url + "auth/login", {
+      params: {
+        username: username,
+        password: password,
+      },
+    });
 
-      if (response.data.Error) {
-        let err = new Error("Вы неправильно ввели логин или пароль");
-        err.display = "Вы неправильно ввели логин или пароль";
-        throw err;
-      }
-      this.user = response.data.User;
-      this.token = response.data.AuthId;
+    if (response.data.Error) {
+      let err = new Error("Вы неправильно ввели логин или пароль");
+      err.display = "Вы неправильно ввели логин или пароль";
+      throw err;
+    }
+    this.user = response.data.User;
+    this.token = response.data.AuthId;
   }
-
-
 
   async addHandlers() {}
 }
