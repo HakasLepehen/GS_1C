@@ -9,7 +9,7 @@ export default class Monitoring {
     this.vehicles = [];
   }
 
-  isLogged(str) {
-    return !!getCookie(str);
+  isLogged() {
+    return !!this.token;
   }
 }

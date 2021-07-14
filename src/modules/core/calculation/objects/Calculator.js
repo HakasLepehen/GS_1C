@@ -1,9 +1,6 @@
 import axios from "axios";
 import { deleteCookie, getCookie, setCookie } from "../services/cookie";
-import {
-  displayError,
-  openAuthWindow
-} from "../services/modal-operations";
+import { closeAuthWindow, displayError, openAuthWindow } from "../services/modal-operations";
 import {
   getAgentsArray,
   sortVehicles,
@@ -12,7 +9,7 @@ import {
 import { Vehicle } from "./glonass-elements/Vehicle";
 import { Glonasssoft } from "./glonass-systems/Glonasssoft";
 import { Wialon } from "./glonass-systems/Wialon";
-import wialon from 'wialon';
+import wialon from "wialon";
 
 export class Calculator {
   constructor() {
@@ -48,11 +45,13 @@ export class Calculator {
     document.querySelector(".work-data").innerHTML = null;
 
     await this.globalSignIn();
-    
+
     let agents = await this.loadAgents();
 
-    console.log(agents);
-    
+    agents.forEach(agent => {
+      agent.countVehicles();
+      agent.render();
+    });
   }
 
   sendDataToCreatePdf(arr) {
@@ -66,19 +65,25 @@ export class Calculator {
 
   // login in all systems of monitoring and writing tokens into a cookies
   async globalSignIn() {
-
-    if (!this.glonasssoft.isLogged('X-Auth')) {
-      setTimeout(() => {
-        return openAuthWindow();
-      }, 1000);
-      console.log('Авторизуюсь в Глонасссофт');
-      await this.glonasssoft.getToken();
+    if (!this.glonasssoft.isLogged("X-Auth")) {
+      try {
+        setTimeout(openAuthWindow, 1000);
+        await this.glonasssoft.logIn();
+      } catch (e) {
+        displayError(
+          e.display ||
+            `Что то пошло не так. Обнови страницу, либо пиши разработчику! Сообщение об ошибке: ${e.message}`
+        );
+        await this.glonasssoft.logIn();
+      }
+      closeAuthWindow();
     }
 
-    if(!this.wialon.isLogged('w-token')) {
-      console.log('Авторизуюсь в виалон');
+    if (!this.wialon.isLogged("w-token")) {
+      console.log("Авторизуюсь в виалон");
       await this.wialon.logIn();
     }
+    await this.wialon.initSession();
   }
 
   async loadAgents() {
@@ -88,8 +93,10 @@ export class Calculator {
       agents = await this.glonasssoft.getAgents();
     } catch (e) {
       if (e.code === 401) {
-        console.log('нет авторизации в глонассофте ', this.glonasssoft.isLogged());
-        await this.glonasssoft.getToken();
+        console.log(
+          "нет авторизации в глонассофте ",
+          this.glonasssoft.isLogged()
+        );
       }
 
       return console.error("Unexpected error", e);

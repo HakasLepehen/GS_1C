@@ -1,5 +1,5 @@
 import Monitoring from "./Monitoring";
-import { closeAuthWindow, displayError } from "../../services/modal-operations";
+import { closeAuthWindow, displayError, openAuthWindow } from "../../services/modal-operations";
 import { deleteCookie, getCookie, setCookie } from "../../services/cookie";
 import axios from "axios";
 
@@ -11,27 +11,15 @@ export class Glonasssoft extends Monitoring {
     this.addHandlers();
   }
 
-  async getToken() {
-    if (!this.token) {
-      section2.addEventListener("userReceived", async (e) => {
-        return await this.userReceived(e);
-      });
-    }
-    return;
-  }
+  async getUser() {
+    return new Promise(res => {
 
-  async userReceived(e) {
-    try {
-      await this.logIn(e.detail.username, e.detail.password);
-      setCookie("X-Auth", this.token);
-      section2.removeEventListener("userReceived", this.userReceived);
-      closeAuthWindow();
-    } catch (e) {
-      return displayError(
-        e.display ||
-          `Что то пошло не так. Обнови страницу, либо пиши разработчику! Сообщение об ошибке: ${e.message}`
-      );
-    }
+      function receiveUser(e) {
+        section2.removeEventListener("userReceived", receiveUser);
+        return res(e.detail);
+      }
+      section2.addEventListener('userReceived', receiveUser);
+    })
   }
 
   async getAgents() {
@@ -52,11 +40,13 @@ export class Glonasssoft extends Monitoring {
   }
 
   //void, authorization in Glonasssoft system and initialize data in Glonasssoft instance
-  async logIn(username, password) {
+  async logIn() {
+    const user = await this.getUser();
+
     const response = await axios.get(window.configuration.url + "auth/login", {
       params: {
-        username: username,
-        password: password,
+        username: user.username,
+        password: user.password,
       },
     });
 
@@ -67,6 +57,7 @@ export class Glonasssoft extends Monitoring {
     }
     this.user = response.data.User;
     this.token = response.data.AuthId;
+    setCookie('X-Auth', this.token);
   }
 
   async addHandlers() {}

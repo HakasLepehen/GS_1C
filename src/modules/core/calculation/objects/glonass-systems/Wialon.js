@@ -1,17 +1,17 @@
-import { setCookie } from "../../services/cookie";
+import { setCookie, getCookie } from "../../services/cookie";
 import Monitoring from "./Monitoring";
 
 export class Wialon extends Monitoring {
   constructor() {
     super();
     this.name = "Виалон";
-    this.hosting = "https://hosting.wialon.ru";
-    // this.sess = wialon.core.Session.getInstance();
-    this.addHandlers();
+    this.apiUrl = "https://hst-api.wialon.com";
+    this.token = getCookie('w-token') || '';
+    // this.initSession();
   }
 
   async auth() {
-    console.log('сработал метод auth()')
+    console.log('сработал метод auth()');
   }
 
   async logIn() {
@@ -28,7 +28,7 @@ export class Wialon extends Monitoring {
 
   async openAuthWindow() {
     // construct login page URL
-    var url = this.hosting + "/login.html"; // your site DNS + "/login.html"
+    var url = "http://hosting.wialon.ru" + "/login.html"; // your site DNS + "/login.html"
     url += "?client_id=" + this.name; // your application name
     url += "&access_type=" + 0x100; // access level, 0x100 = "Online tracking only"
     url += "&activation_time=" + 0; // activation time, 0 = immediately; you can pass any UNIX time value
@@ -60,5 +60,21 @@ export class Wialon extends Monitoring {
     }
   }
 
-  addHandlers() {}
+  async initSession() {
+    let sess = wialon.core.Session.getInstance();
+    console.log('Запускаю сессию с url: ', this.apiUrl)
+    sess.initSession(this.apiUrl);
+    console.log('Запускаю сессию с токеном', this.token);
+    sess.loginToken(this.token, '', function(code) {
+      if (code) {
+        console.log('Не удалось авторизоваться, ошибка: ', wialon.core.Errors.getErrorText(code));  
+      } else {
+        console.log('Logged successfully');
+      }
+      let user = sess.getCurrUser().getName();
+      console.log('Юзер ', user);
+    });
+
+    console.log('Пользователь', sess.getCurrUser());
+  }
 }
