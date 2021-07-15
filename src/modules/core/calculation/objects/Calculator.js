@@ -81,7 +81,7 @@ export class Calculator {
 
     if (!this.wialon.isLogged("w-token")) {
       console.log("Авторизуюсь в виалон");
-      await this.wialon.logIn();
+      await this.wialon.getToken();
     }
     await this.wialon.initSession();
   }

@@ -10,14 +10,6 @@ export class Wialon extends Monitoring {
     // this.initSession();
   }
 
-  async auth() {
-    console.log('сработал метод auth()');
-  }
-
-  async logIn() {
-    await this.getToken();
-    await this.auth();
-  }
 
   async getToken() {
     await this.openAuthWindow()
@@ -35,7 +27,7 @@ export class Wialon extends Monitoring {
     url += "&duration=" + 604800; // duration, 604800 = one week in seconds
     url += "&flags=" + 0x1; // options, 0x1 = add username in response
 
-    url += "&redirect_uri=" + this.hosting + "/post_token.html";
+    url += "&redirect_uri=" + "http://hosting.wialon.ru" + "/post_token.html";
     // if login succeed - redirect to this page
 
     // finally, open login page in new window
