@@ -97,6 +97,8 @@ export class Calculator {
           "нет авторизации в глонассофте ",
           this.glonasssoft.isLogged()
         );
+        openAuthWindow();
+        await this.globalSignIn();
       }
 
       return console.error("Unexpected error", e);
