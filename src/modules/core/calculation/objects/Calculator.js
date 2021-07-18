@@ -48,10 +48,15 @@ export class Calculator {
 
     let agents = await this.loadAgents();
 
+    console.log('Полученные клиенты', agents);
     agents.forEach(agent => {
       agent.countVehicles();
       agent.render();
     });
+
+    let units = await this.wialon.execution();
+
+    console.log('Полученные автомобили', units);
   }
 
   sendDataToCreatePdf(arr) {
@@ -98,15 +103,16 @@ export class Calculator {
           this.glonasssoft.isLogged()
         );
         openAuthWindow();
-        await this.globalSignIn();
+        await this.glonasssoft.logIn();
+        return this.init();
       }
 
       return console.error("Unexpected error", e);
     }
 
     agents = agents.data.filter((agent) => agent.agentInfoType === 0);
-
-    return (processedAgents = getAgentsArray(agents));
+    console.log('Клиенты: ', agents);
+    return processedAgents = getAgentsArray(agents);
   }
 
   async getVehicles() {

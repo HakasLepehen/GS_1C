@@ -69,4 +69,30 @@ export class Wialon extends Monitoring {
 
     console.log('Пользователь', sess.getCurrUser());
   }
+
+  async execution() {
+    let units
+    console.log('Начинаем второй метод');
+    let sess = wialon.core.Session.getInstance();
+    console.log('session: ', sess);
+    const flags = wialon.item.Item.dataFlag.base;
+    console.log(flags);
+  
+    sess.updateDataFlags( // load items to current session
+      [{type: "type", data: "avl_unit", flags: flags, mode: 0}], // Items specification
+        function (code) { // updateDataFlags callback
+            if (code) { console.log(code); return; } // exit if error code
+    
+                // get loaded 'avl_unit's items  
+            units = sess.getItems("avl_unit");
+
+            
+            if (!units || !units.length){ 
+              console.log("Units not found"); 
+              return; 
+            } 
+            console.log(units);
+          }
+      );
+  }
 }

@@ -55,6 +55,12 @@ export class Glonasssoft extends Monitoring {
       err.display = "Вы неправильно ввели логин или пароль";
       throw err;
     }
+    let modal = document.querySelector(".modal");
+
+  
+    if(modal.style.display == "flex") {
+      closeAuthWindow();
+    }
     this.user = response.data.User;
     this.token = response.data.AuthId;
     setCookie('X-Auth', this.token);
